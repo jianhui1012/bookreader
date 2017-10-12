@@ -1,0 +1,27 @@
+.friend-link {
+  width: 100%;
+  color: #999;
+  font-size: 14px;
+
+  a {
+    background: #fff;
+    width: 140px;
+    max-width: 140px;
+    height: 48px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+
+    img {
+      max-width: 100%;
+      border: 0 none;
+    }
+
+  }
+
+}
+
+
+
