@@ -3,14 +3,14 @@
  */
 import React,{Component} from 'react'
 
- class Ranking extends Component {
+ class Home extends Component {
     constructor(props) {
         super(props)
     }
 
     render(){
-        return <div><button onClick={this.props.onClickRanking}></button></div>;
+        return <div></div>;
     }
 }
 
-export default Ranking
+export default Home;
