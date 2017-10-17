@@ -3,6 +3,7 @@
  */
 import * as types from "../modules/constants/actionTypes";
 
+
 const initialState = {
     isLoading: false,
     male: [],

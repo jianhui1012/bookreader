@@ -2,7 +2,7 @@
  * Created by golike on 2017/10/15.
  */
 import React from "react";
-import { browserHistory, Router, Route, IndexRoute } from 'react-router';
+import {browserHistory, Router, Route, IndexRoute} from "react-router";
 //公用页面
 import roots from "../components/roots";
 
@@ -41,7 +41,8 @@ const ranking = (location, cb) => {
 const RouteConfig = (
     <Router history={browserHistory}>
         <Route path="/" component={roots}>
-            <IndexRoute  getComponent={home} />
+            <IndexRoute getComponent={home} />
+            <Route path="/home" getComponent={home}/>
             <Route path="/selection"   />
             <Route path="/category"   />
             <Route path="/booklist"   />
