@@ -71,7 +71,7 @@ export let rankingList = () => {
 let getRankingDetailSuccess=()=>{
     return {
         type: types.DISCOVER_CHARTS_DETAIL,
-        isLoadingDetail: false,
+        isLoading: false,
         chartsDetail: ranking
     }
 };

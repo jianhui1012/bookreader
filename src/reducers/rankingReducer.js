@@ -1,20 +1,18 @@
 /**
  * Created by golike on 2017/10/15.
  */
-import { handleActions } from 'redux-actions';
-import  * as types from '../modules/constants/actionTypes';
+import * as types from "../modules/constants/actionTypes";
 
 const initialState = {
-    isLoadingBookDiscussionList: false,
-    isLoadingBookDiscussionListMore: false,
-    bookDiscussionList: [],
+    isLoading: false,
+    male: [],
+    maleOther: [],
+    female: [],
+    femaleOther: [],
+    error:"",
 
-    isLoadingDetail: false,
-    bookDiscussionDetail: null,
-    bookDiscussionDetailCommentBest: [],
-    isLoadingBookDiscussionCommentList: false,
-    isLoadingBookDiscussionCommentListMore: false,
-    bookDiscussionCommentList: [],
+    chartsDetail: [],
+    chartsDetailBooks: [],
     totalComment: 0
 };
 

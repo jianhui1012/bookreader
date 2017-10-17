@@ -12,6 +12,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    onClickRanking: (id) => (
+        dispatch()
+    ),
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Ranking);
