@@ -8,7 +8,7 @@
 import queryString from 'query-string'
 import fetch from 'isomorphic-fetch'
 // import Mock from 'mockjs'
-import config from '../common/config'
+import config from '../config'
 
 var request = {}
 
@@ -20,11 +20,11 @@ request.get = (url, params, successCallBack, failCallBack) => {
   return fetch(url)
     .then((response) => response.json())
     .then((response) => {
-      console.log(response) 
+      console.log(response)
       successCallBack(response)
     })
     .catch((error) => {
-      console.log(response) 
+      console.log(response)
       failCallBack(error)
     })
 }

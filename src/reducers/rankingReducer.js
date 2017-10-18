@@ -2,9 +2,9 @@
  * Created by golike on 2017/10/15.
  */
 import * as types from "../modules/constants/actionTypes";
-import Immutable from 'immutable';
 
-const initialState = Immutable.fromJS({
+
+const initialState = {
     isLoading: false,
     male: [],
     maleOther: [],
@@ -15,7 +15,7 @@ const initialState = Immutable.fromJS({
     chartsDetail: [],
     chartsDetailBooks: [],
     totalComment: 0
-});
+};
 
 export default function rankingReducers(state = initialState, action) {
     switch (action.type) {

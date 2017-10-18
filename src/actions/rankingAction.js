@@ -15,6 +15,7 @@ export let ranking = () => {
 };
 //加载排行榜成功
 let getRankingSuccess = (data) => {
+    console.log("getRankingSuccess:"+JSON.stringify(data));
     let male = [];
     let maleOther = [];
     let female = [];
@@ -58,7 +59,7 @@ let getFailure=(type,error)=>{
     }
 };
 
-export let rankingList = () => {
+export let rankingList = (id) => {
     return dispatch => {
         dispatch(getLoading(types.DISCOVER_CHARTS_DETAIL_LOADING,true))
         return request.get(api.DISCOVER_CHARTS_DETAIL(id), null,
@@ -68,10 +69,10 @@ export let rankingList = () => {
 };
 
 
-let getRankingDetailSuccess=()=>{
+let getRankingDetailSuccess=(data)=>{
     return {
         type: types.DISCOVER_CHARTS_DETAIL,
         isLoading: false,
-        chartsDetail: ranking
+        chartsDetail: data
     }
 };
