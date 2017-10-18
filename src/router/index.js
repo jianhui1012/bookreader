@@ -46,7 +46,7 @@ const RouteConfig = (
             <Route path="/selection"   />
             <Route path="/category"   />
             <Route path="/booklist"   />
-            <Route path="/ranking" getComponent={ranking} />
+            <Route path="/rank" getComponent={ranking} />
         </Route>
     </Router>
 );
