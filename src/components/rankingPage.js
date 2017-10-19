@@ -49,10 +49,7 @@ class Ranking extends Component {
                     <LeftMenu defaultIndex={0} clickMenuItem={(item) => {
                         // href="/ranking/54d42d92321052167dfb75e3?type=male"
                         this.setState({currentId: item._id})
-                    }} title={"男生"} menuData={ranking.male}/>
-                    <LeftMenu defaultIndex={-1} clickMenuItem={(item) => {
-                        this.setState({currentId: item._id})
-                    }} title={"女生"} menuData={ranking.female}/>
+                    }} titles={["男生","女生"] } menuData={ranking.male.concat(ranking.female)}/>
                 </div>
             </div>
             {/*内容显示区*/}

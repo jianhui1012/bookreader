@@ -3,8 +3,9 @@
  */
 import React, {Component} from 'react'
 import {is, fromJS} from 'immutable';
+// import '../style/leftmenu.scss'
 
-export  default class LeftMenu extends Component {
+export default class LeftMenu extends Component {
 
     static defaultProps = {
         title: "请输入标题",
@@ -40,11 +41,24 @@ export  default class LeftMenu extends Component {
     }
 
     render() {
-        const {title, menuData}=this.props;
+        const {titles, menuData}=this.props;
         return (<div className="sub-sideBar">
-            <div className="title">{title}</div>
+            <div className="title">{titles[0]}</div>
             {menuData.map((value, index) => {
                 if(!value)
+                    return;
+                if(index>=5)
+                     return;
+                return <a key={index} onClick={this._onPress.bind(this,index,value)}
+                          className={this.getItemCssClasses(index)}>
+                    <span>{value.title}</span>
+                </a>;
+            })}
+            <div className="title">{titles[1]}</div>
+            {menuData.map((value, index) => {
+                if(!value)
+                    return;
+                if(index<5)
                     return;
                 return <a key={index} onClick={this._onPress.bind(this,index,value)}
                           className={this.getItemCssClasses(index)}>
