@@ -20,11 +20,10 @@ request.get = (url, params, successCallBack, failCallBack) => {
   return fetch(url)
     .then((response) => response.json())
     .then((response) => {
-      console.log(response)
       successCallBack(response)
     })
     .catch((error) => {
-      console.log(response)
+      console.log(error)
       failCallBack(error)
     })
 }
