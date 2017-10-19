@@ -5,13 +5,21 @@ import React, {Component} from 'react'
 //import about connect package
 import {connect} from 'react-redux';
 import {ranking, rankingList} from '../actions/rankingAction'
+//加载CSS
+import  './common/style/leftmenu.scss'
+//加载组件
+import LeftMenu from './common/component-module/LeftMenu'
+
 
 class Ranking extends Component {
     constructor(props) {
         super(props)
         this.state = {
             showMaleOther: false,
-            showFemaleOther: false
+            showFemaleOther: false,
+            currentId: "",
+            type: "",
+
         }
     }
 
@@ -33,27 +41,22 @@ class Ranking extends Component {
     }
 
     render() {
-        const {ranking, clickLeftRanking} = this.props;
-        console.log(JSON.stringify(ranking));
+        const {ranking} = this.props;
         return <div>
             {/*左侧菜单*/}
             <div>
-                {/*<div>*/}
-                    {/*{ ranking.male.map((value, index) => {*/}
-                        {/*return <a key={index}>{value.title}</a>;*/}
-                    {/*})}*/}
-                {/*</div>*/}
-                {/*<div style={{height: 10}}></div>*/}
-                {/*<div>*/}
-                    {/*{ ranking.female.map((value, index) => {*/}
-                        {/*return <a key={index}>{value.title}</a>;*/}
-                    {/*})}*/}
-                {/*</div>*/}
-
+                <div className="c-full-sideBar">
+                    <LeftMenu defaultIndex={0} clickMenuItem={(item) => {
+                        // href="/ranking/54d42d92321052167dfb75e3?type=male"
+                        this.setState({currentId: item._id})
+                    }} title={"男生"} menuData={ranking.male}/>
+                    <LeftMenu defaultIndex={-1} clickMenuItem={(item) => {
+                        this.setState({currentId: item._id})
+                    }} title={"女生"} menuData={ranking.female}/>
+                </div>
             </div>
             {/*内容显示区*/}
             <div>
-
             </div>
         </div>;
     }
@@ -61,6 +64,7 @@ class Ranking extends Component {
 
 const mapStateToProps = (store) => {
     const {ranking} = store;
+    // console.log("rank:" + JSON.stringify(ranking));
     return {
         ranking
     }
@@ -69,7 +73,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => ({
     clickLeftRanking: (id) => {
         dispatch(rankingList(id))
-    },getRanking:()=>{
+    }, getRanking: () => {
         dispatch(ranking())
     }
 });

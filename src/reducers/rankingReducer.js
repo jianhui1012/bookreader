@@ -17,7 +17,7 @@ const initialState = {
     totalComment: 0
 };
 
-export default function rankingReducers(state = initialState, action) {
+export default function ranking(state = initialState, action) {
     switch (action.type) {
         case types.DISCOVER_CHARTS_LOADING:
             return Object.assign({}, state, {

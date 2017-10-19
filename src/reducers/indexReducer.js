@@ -7,10 +7,10 @@
 'use strict'
 
 import {combineReducers} from 'redux'
-import rankingReducer from './rankingReducer'
+import ranking from './rankingReducer'
 
 const rootReducer = combineReducers({
-    rankingReducer
+    ranking
 });
 
 export default rootReducer

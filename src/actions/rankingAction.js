@@ -15,7 +15,6 @@ export let ranking = () => {
 };
 //加载排行榜成功
 let getRankingSuccess = (data) => {
-    console.log("getRankingSuccess:"+JSON.stringify(data));
     let male = [];
     let maleOther = [];
     let female = [];
