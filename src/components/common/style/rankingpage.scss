@@ -1,0 +1,142 @@
+.page-ranking{
+  display: inline-block;
+  width: 100%;
+  padding: 15px 0;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  clear: both;
+}
+
+.content {
+  float: right;
+  width: 880px;
+  padding: 0 15px;
+  background: #fff;
+}
+
+.content .title {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 15px;
+  color: #cab389;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.c-full-menu .menu-title {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  border-left: 5px solid #cab389;
+}
+
+.c-full-menu .more-sort, .c-full-menu .sort {
+  margin-bottom: 15px;
+}
+
+.c-full-menu .more-cells, .c-full-menu .sort-cells {
+  padding: 0 15px;
+  margin-bottom: 10px;
+}
+
+.c-full-menu .more-cells .more-cell, .c-full-menu .more-cells .sort-cell, .c-full-menu .sort-cells .more-cell, .c-full-menu .sort-cells .sort-cell {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.c-full-menu .more-cells .active, .c-full-menu .more-cells .active:hover, .c-full-menu .sort-cells .active, .c-full-menu .sort-cells .active:hover, .c-full-menu .sub-sort-cells p .active, .c-full-menu .sub-sort-cells p .active:hover {
+  color: #fff;
+  border-radius: 2px;
+  background: #d82626;
+}
+
+.content .books-list {
+  padding: 0 0 80px;
+  .book {
+    width: 410px;
+    position: relative;
+    float: left;
+    padding: 20px 15px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+  cursor: pointer;
+  outline: none !important;
+}
+
+.books-list .book .cover {
+  float: left;
+  width: 90px;
+  height: 120px;
+  border: 1px solid #ebebeb;
+  background: url(../images/img-bk.png) no-repeat center;
+  background-size: 100%;
+  box-shadow: 2px 4px 6px #bbb;
+}
+
+img {
+  max-width: 100%;
+  border: 0 none;
+}
+
+.books-list .book .right {
+  height: 120px;
+  margin-left: 105px;
+}
+
+.books-list .book .right .name {
+  height: 22px;
+  line-height: 22px;
+  color: #333 !important;
+}
+
+.books-list .book .right p {
+  height: 20px;
+  line-height: 20px;
+  color: #999;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.books-list .book .right p.author {
+  height: 28px;
+  line-height: 28px;
+}
+
+.books-list .book .right p.desc {
+  height: 40px;
+  margin: 5px 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.books-list .book .right p.popularity{
+  margin-top: 10px;
+}
+
+.c-red {
+  color: #d82626;
+}
+.split{
+  padding: 0 10px;
+}

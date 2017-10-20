@@ -6,7 +6,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {ranking, rankingList} from '../actions/rankingAction'
 //加载CSS
+import './common/style/index.scss'
 import  './common/style/leftmenu.scss'
+import './common/style/rankingpage.scss'
 //加载组件
 import LeftMenu from './common/component-module/LeftMenu'
 
@@ -19,7 +21,6 @@ class Ranking extends Component {
             showFemaleOther: false,
             currentId: "",
             type: "",
-
         }
     }
 
@@ -42,7 +43,8 @@ class Ranking extends Component {
 
     render() {
         const {ranking} = this.props;
-        return <div>
+        return <section className="page-ranking">
+            <section className="container">
             {/*左侧菜单*/}
                 <div className="c-full-sideBar">
                     <LeftMenu defaultIndex={0} clickMenuItem={(item) => {
@@ -56,18 +58,18 @@ class Ranking extends Component {
                         {"本周潜力榜"}
                     </div>
                     <div className="c-full-menu">
-                        <div className="sort sort-male hide">
-                            <div className="menu-title">筛选</div>
-                            <div className="sort-cells">
-                                <a href="/ranking/582ed5fc93b7e855163e707d?type=collapseMale" className="sort-cell ">圣诞热搜榜</a>
-                            </div>
-                        </div>
-                        <div className="sort sort-female hide">
-                            <div className="menu-title">筛选</div>
-                            <div className="sort-cells">
-                                <a href="/ranking/582fb5c412a401a20ea50275?type=collapseFemale" className="sort-cell ">圣诞热搜榜</a>
-                            </div>
-                        </div>
+                        {/*<div className="sort sort-male hide">*/}
+                            {/*<div className="menu-title">筛选</div>*/}
+                            {/*<div className="sort-cells">*/}
+                                {/*<a href="/ranking/582ed5fc93b7e855163e707d?type=collapseMale" className="sort-cell ">圣诞热搜榜</a>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                        {/*<div className="sort sort-female hide">*/}
+                            {/*<div className="menu-title">筛选</div>*/}
+                            {/*<div className="sort-cells">*/}
+                                {/*<a href="/ranking/582fb5c412a401a20ea50275?type=collapseFemale" className="sort-cell ">圣诞热搜榜</a>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
                         <div className="more-sort ">
                             <div className="menu-title">更多筛选</div>
                             <div className="more-cells">
@@ -85,7 +87,7 @@ class Ranking extends Component {
                                 <p className="author">
                                     <span>逍遥寰宇</span>
                                 </p>
-                                <p className="desc"> </p>
+                                <p className="desc">在破败中崛起，在寂灭中复苏。沧海成尘，雷电枯竭，那一缕幽雾又一次临近大地，世间的枷锁被打开了，一个全新的世界就此揭开神秘的一角…… </p>
                                 <p className="popularity">
                                     <span className="c-red">1.11 万</span>人气
                                     <span className="split">|</span>
@@ -95,7 +97,8 @@ class Ranking extends Component {
                         </a>
                     </div>
                 </div>
-            </div>;
+            </section>
+            </section>;
     }
 }
 
