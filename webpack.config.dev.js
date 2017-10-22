@@ -33,7 +33,6 @@ module.exports = {
             include: [APP_PATH]
         }, {
             test: /\.less$/,
-            exclude: /^node_modules$/,
             loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'less']),
             include: [APP_PATH]
         }, {

@@ -6,14 +6,15 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {ranking, rankingList} from '../actions/rankingAction'
 //加载CSS
-import './common/style/index.scss'
-import './common/style/header.scss'
 import  './common/style/leftmenu.scss'
 import './common/style/rankingpage.scss'
+//加载antd
+import  {Pagination } from 'antd'
 //加载组件
 import LeftMenu from './common/component-module/LeftMenu'
 import TopMenu from './common/component-module/TopMenu'
 import BookList from './common/component-module/BookList'
+
 
 
 class Ranking extends Component {
@@ -63,16 +64,13 @@ class Ranking extends Component {
             <div className="title">
                 {this.state.currentRank.title}
             </div>
-            <TopMenu clickMenuItem={(index, item) => {
-                if (index == 1) {
-                    this.props.getRankingList(item._id);
-                } else if (index == 2) {
-                    this.props.getRankingList(item.monthRank);
-                } else if (index == 3) {
-                    this.props.getRankingList(item.totalRank);
-                }
+            <TopMenu clickMenuItem={(index, item,id) => {
+                this.props.getRankingList(id);
             }} rankData={this.state.currentRank}/>
             {content}
+            <div className="c-full-page">
+                <Pagination   total={50} />
+            </div>
         </div>;
     }
 

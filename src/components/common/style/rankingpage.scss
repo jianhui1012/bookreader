@@ -65,6 +65,18 @@ section {
   background: #d82626;
 }
 
+.page-ranking .content .c-full-page {
+  float: right;
+}
+
+.c-full-page {
+  clear: both;
+  display: inline-block;
+  margin: 15px 0;
+  color: #999;
+  font-size: 12px;
+}
+
 .content .books-list {
   padding: 0 0 80px;
   .book {

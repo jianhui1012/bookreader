@@ -4,6 +4,7 @@
 import React, {Component} from "react";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
+import './common/style/root.scss'
 
 class Roots extends Component {
     render() {

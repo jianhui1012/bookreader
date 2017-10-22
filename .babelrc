@@ -5,7 +5,9 @@
   	 	"stage-0",
   	],
   	"plugins": [
+		"transform-runtime",
         "transform-decorators-legacy",
-        "transform-class-properties"
+        "transform-class-properties",
+		["import", { "style": true, "libraryName": "antd",  "libraryDirectory": "lib" }]    // `style: true` 会加载 less 文件
     ]
 }

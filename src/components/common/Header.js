@@ -2,6 +2,7 @@
  * Created by golike on 2017/9/28.
  */
 import React from "react";
+import '../common/style/header.scss'
 
 const Header = () => (
     <div>

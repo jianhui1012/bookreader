@@ -3,7 +3,6 @@
  */
 import React, {Component} from 'react'
 import {is, fromJS} from 'immutable';
-// import '../style/leftmenu.scss'
 
 export default class TopMenu extends Component {
 
@@ -23,6 +22,13 @@ export default class TopMenu extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        const {rankData} = nextProps;
+        if (rankData!=this.props.rankData) {
+            this.setState({currentIndex: 1});
+        }
+    }
+
 
     shouldComponentUpdate(nextProps, nextState) {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
@@ -36,7 +42,13 @@ export default class TopMenu extends Component {
     _onPress(index, value) {
         if (!this.props.clickMenuItem)
             return;
-        this.props.clickMenuItem(index, value);
+        if (index == 1) {
+            this.props.clickMenuItem(index, value,value._id);
+        } else if (index == 2) {
+            this.props.clickMenuItem(index, value,value.monthRank);
+        } else if (index == 3) {
+            this.props.clickMenuItem(index, value,value.totalRank);
+        }
         this.setState({currentIndex: index});
     }
 
