@@ -11,9 +11,9 @@ const initialState = {
     female: [],
     femaleOther: [],
     error:"",
-
     chartsDetail: [],
     chartsDetailBooks: [],
+    isLoadingDetail:false,
     totalComment: 0
 };
 

@@ -1,0 +1,116 @@
+.c-full-top {
+  min-width: 1200px;
+  height: 40px;
+  background: #f2f2f2;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.c-full-top .connection {
+  width: 125px;
+  float: right;
+  position: relative;
+}
+
+//.c-full-top .connection .space {
+//  margin: 0 4px;
+//  cursor: default;
+//}
+
+.c-full-footer .container .friend-link span, .c-full-top .connection .follow, .c-full-top .connection .follow span, .c-full-top .connection .service, .c-full-top .connection .service span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c-full-top .connection .follow a, .c-full-top .connection .service a {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.c-full-header .brand {
+  height: 100px;
+  background: #fbfaf8;
+}
+
+.c-full-header .brand .logo {
+  float: left;
+  margin-top: 21px;
+  width: 175px;
+  height: 60px;
+}
+
+.c-full-header .brand .search {
+  float: right;
+  width: 300px;
+  height: 40px;
+  margin-top: 30px;
+  border: 2px solid #cab389;
+}
+
+.c-full-header .brand .search .search-input {
+  width: 260px;
+  height: 100%;
+  line-height: 40px;
+  padding-left: 10px;
+  color: #666;
+  border: 0 none;
+  background: #f2f2f2;
+  box-sizing: border-box;
+}
+
+.c-full-header .brand .search .search-btn {
+  float: right;
+  width: 40px;
+  height: 100%;
+  background:  #cab389 url(../images/icon/search.png) no-repeat center;
+  cursor: pointer;
+}
+
+.c-full-header .nav {
+  height: 60px;
+  background: #d82626;
+}
+
+.c-full-header .nav .nav-cells {
+  width: 100%;
+}
+
+.c-full-header .nav .nav-cells .nav-cell {
+  float: left;
+  width: 14.28571%;
+  height: 100%;
+  text-align: center;
+}
+
+.c-full-header .nav .nav-cells .nav-cell a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  color: #f0bdbd;
+  font-size: 16px;
+}
+
+.c-full-header .nav .nav-cells .nav-cell.active a {
+  color: #fff;
+  font-weight: 700;
+  background: lightblue;
+}
+
+.c-full-header .nav .nav-cells .nav-cell.active a:after {
+  left: 50%;
+  bottom: 0;
+  margin-left: -8px;
+  border-bottom: 8px solid #fff;
+}
+

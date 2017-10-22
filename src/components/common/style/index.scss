@@ -3,3 +3,17 @@ article, aside, blockquote, body, button, code, dd, details, dl, dt, fieldset, f
   padding: 0;
   outline: 0;
 }
+//.c-full-footer .container .footer-right .public .weibo:hover .weibo-code, .c-full-footer .container .footer-right .public .weixin:hover .weixin-code, .c-full-header .nav .nav-cells #nav-client:hover .qr-code, .c-full-page .pageNumber li a, .c-full-top .connection .follow:hover .follow-code, .c-full-top .connection .service:hover .service-code, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+//  display: block;
+//}
+
+a {
+  text-decoration: none;
+  color: #666;
+  cursor: pointer;
+  outline: none!important;
+}
+
+ol, ul {
+  list-style: none;
+}

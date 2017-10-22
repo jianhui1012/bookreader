@@ -7,7 +7,7 @@ import api from '../modules/api/api'
 
 export let ranking = () => {
     return dispatch => {
-        dispatch(getLoading(types.DISCOVER_CHARTS_LOADING,true))
+        dispatch(getRankLoading(types.DISCOVER_CHARTS_LOADING,true))
         return request.get(api.DISCOVER_CHARTS, null,
             (data) => {data.ok ? dispatch(getRankingSuccess(data)) : dispatch(getRankingSuccess(null))},
             (error) => {dispatch(getFailure(types.DISCOVER_CHARTS_FAILURE,error))})
@@ -43,8 +43,7 @@ let getRankingSuccess = (data) => {
     }
 }
 
-//加载中
-let getLoading= (type,isLoading) => {
+let getRankLoading= (type,isLoading) => {
     return {
         type: type,
         isLoading: isLoading
@@ -58,9 +57,16 @@ let getFailure=(type,error)=>{
     }
 };
 
+let getRankDetailLoading= (type,isLoading) => {
+    return {
+        type: type,
+        isLoadingDetail: isLoading
+    }
+};
+
 export let rankingList = (id) => {
     return dispatch => {
-        dispatch(getLoading(types.DISCOVER_CHARTS_DETAIL_LOADING,true))
+        dispatch(getRankDetailLoading(types.DISCOVER_CHARTS_DETAIL_LOADING,true))
         return request.get(api.DISCOVER_CHARTS_DETAIL(id), null,
             (data) => {data.ok ? dispatch(getRankingDetailSuccess(data.ranking)) : dispatch(getRankingDetailSuccess(null))},
             (error) => {dispatch(getFailure(types.DISCOVER_CHARTS_DETAIL_FAILURE,error))})
@@ -71,7 +77,7 @@ export let rankingList = (id) => {
 let getRankingDetailSuccess=(data)=>{
     return {
         type: types.DISCOVER_CHARTS_DETAIL,
-        isLoading: false,
+        isLoadingDetail: false,
         chartsDetail: data
     }
 };

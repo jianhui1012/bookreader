@@ -7,98 +7,92 @@ import {connect} from 'react-redux';
 import {ranking, rankingList} from '../actions/rankingAction'
 //加载CSS
 import './common/style/index.scss'
+import './common/style/header.scss'
 import  './common/style/leftmenu.scss'
 import './common/style/rankingpage.scss'
 //加载组件
 import LeftMenu from './common/component-module/LeftMenu'
+import TopMenu from './common/component-module/TopMenu'
+import BookList from './common/component-module/BookList'
 
 
 class Ranking extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             showMaleOther: false,
             showFemaleOther: false,
             currentId: "",
             type: "",
+            currentRank: {}
         }
     }
 
     componentDidMount() {
-        const {getRanking} = this.props;
-        getRanking();
+        this.props.getRanking();
+        //开始获取排行榜详情数据
+        this.props.getRankingList("54d42d92321052167dfb75e3");
+        this.setState({
+            currentRank: {
+                "_id": "54d42d92321052167dfb75e3",
+                "title": "追书最热榜 Top100",
+                "cover": "/ranking-cover/142319144267827",
+                "collapse": false,
+                "monthRank": "564d820bc319238a644fb408",
+                "totalRank": "564d8494fe996c25652644d2",
+                "shortTitle": "最热榜"
+            }
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const {ranking, isLoadingDetail} = nextProps;
+        if (ranking.male.length > 0 && !isLoadingDetail) {
+        }
     }
 
     renderStatus(status) {
-        switch (status) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
+        //const {ranking} = this.props;
+        let content = <div/>;
+        if (!status) {
+            content = <BookList bookListData={this.props.ranking.chartsDetailBooks}/>;
+        } else {
+            content = <div className="content">加载中...</div>;
         }
-
+        return <div className="content">
+            <div className="title">
+                {this.state.currentRank.title}
+            </div>
+            <TopMenu clickMenuItem={(index, item) => {
+                if (index == 1) {
+                    this.props.getRankingList(item._id);
+                } else if (index == 2) {
+                    this.props.getRankingList(item.monthRank);
+                } else if (index == 3) {
+                    this.props.getRankingList(item.totalRank);
+                }
+            }} rankData={this.state.currentRank}/>
+            {content}
+        </div>;
     }
+
 
     render() {
         const {ranking} = this.props;
         return <section className="page-ranking">
             <section className="container">
-            {/*左侧菜单*/}
+                {/*左侧菜单*/}
                 <div className="c-full-sideBar">
-                    <LeftMenu defaultIndex={0} clickMenuItem={(item) => {
+                    <LeftMenu defaultIndex={0} clickMenuItem={(index, item) => {
                         // href="/ranking/54d42d92321052167dfb75e3?type=male"
-                        this.setState({currentId: item._id})
-                    }} titles={["男生","女生"] } menuData={ranking.male.concat(ranking.female)}/>
+                        this.props.getRankingList(item._id);
+                        this.setState({currentRank: item})
+                    }} titles={["男生", "女生"] } menuData={ranking.male.concat(ranking.female)}/>
                 </div>
-            {/*内容显示区*/}
-                <div className="content">
-                    <div className="title">
-                        {"本周潜力榜"}
-                    </div>
-                    <div className="c-full-menu">
-                        {/*<div className="sort sort-male hide">*/}
-                            {/*<div className="menu-title">筛选</div>*/}
-                            {/*<div className="sort-cells">*/}
-                                {/*<a href="/ranking/582ed5fc93b7e855163e707d?type=collapseMale" className="sort-cell ">圣诞热搜榜</a>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                        {/*<div className="sort sort-female hide">*/}
-                            {/*<div className="menu-title">筛选</div>*/}
-                            {/*<div className="sort-cells">*/}
-                                {/*<a href="/ranking/582fb5c412a401a20ea50275?type=collapseFemale" className="sort-cell ">圣诞热搜榜</a>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                        <div className="more-sort ">
-                            <div className="menu-title">更多筛选</div>
-                            <div className="more-cells">
-                                <a href="/ranking/54d42e72d9de23382e6877fb?type=male" className="more-cell active">{"周榜"}</a>
-                                <a href="/ranking/564eee3ea82e3ada6f14b195?type=male" className="more-cell ">月榜</a>
-                                <a href="/ranking/564eeeabed24953671f2a577?type=male" className="more-cell ">总榜</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="books-list">
-                        <a href="/book/57cec0a2e1b21b436bc08939" className="book" target="_blank">
-                            <img src="http://statics.zhuishushenqi.com/agent/http%3A%2F%2Fimg.1391.com%2Fapi%2Fv1%2Fbookcenter%2Fcover%2F1%2F1468701%2F_1468701_384865.jpg%2F" alt="无敌血脉" className="cover"/>
-                            <div className="right">
-                                <h4 className="name"><span>无敌血脉</span></h4>
-                                <p className="author">
-                                    <span>逍遥寰宇</span>
-                                </p>
-                                <p className="desc">在破败中崛起，在寂灭中复苏。沧海成尘，雷电枯竭，那一缕幽雾又一次临近大地，世间的枷锁被打开了，一个全新的世界就此揭开神秘的一角…… </p>
-                                <p className="popularity">
-                                    <span className="c-red">1.11 万</span>人气
-                                    <span className="split">|</span>
-                                    <span className="c-red">43.24%</span>读者留存
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                {/*内容显示区*/}
+                {this.renderStatus(ranking.isLoadingDetail)}
             </section>
-            </section>;
+        </section>;
     }
 }
 
@@ -111,7 +105,7 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    clickLeftRanking: (id) => {
+    getRankingList: (id) => {
         dispatch(rankingList(id))
     }, getRanking: () => {
         dispatch(ranking())
