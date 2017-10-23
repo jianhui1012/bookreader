@@ -34,7 +34,6 @@ module.exports = {
         }, {
             test: /\.less$/,
             loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'less']),
-            include: [APP_PATH]
         }, {
             test: /\.scss$/,
             exclude: /^node_modules$/,
