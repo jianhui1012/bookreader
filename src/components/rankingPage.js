@@ -9,12 +9,10 @@ import {ranking, rankingList} from '../actions/rankingAction'
 import  './common/style/leftmenu.scss'
 import './common/style/rankingpage.scss'
 //加载antd
-import  {Pagination } from 'antd'
 //加载组件
 import LeftMenu from './common/component-module/LeftMenu'
 import TopMenu from './common/component-module/TopMenu'
 import BookList from './common/component-module/BookList'
-
 
 
 class Ranking extends Component {
@@ -64,13 +62,10 @@ class Ranking extends Component {
             <div className="title">
                 {this.state.currentRank.title}
             </div>
-            <TopMenu clickMenuItem={(index, item,id) => {
+            <TopMenu clickMenuItem={(index, item, id) => {
                 this.props.getRankingList(id);
             }} rankData={this.state.currentRank}/>
             {content}
-            <div className="c-full-page">
-                <Pagination   total={50} />
-            </div>
         </div>;
     }
 

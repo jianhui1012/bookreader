@@ -4,6 +4,7 @@
 import React, {Component} from 'react'
 import {is, fromJS} from 'immutable';
 import api from '../../../modules/api/api'
+import  {Pagination} from 'antd'
 
 export default class BookList extends Component {
 
@@ -21,27 +22,25 @@ export default class BookList extends Component {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
     }
 
-    getLatelyFollower(latelyFollower){
-        if(latelyFollower>=10000){
-            return (latelyFollower/10000).toFixed(2)+"万";
-        }else{
-            return latelyFollower+"";
+    getLatelyFollower(latelyFollower) {
+        if (latelyFollower >= 10000) {
+            return (latelyFollower / 10000).toFixed(2) + "万";
+        } else {
+            return latelyFollower + "";
         }
     }
 
-    _onPress(index,value) {
-        if(!this.props.clickMenuItem)
-            return;
-        this.props.clickMenuItem(index,value);
-        this.setState({currentIndex: index});
+    onShowSizeChange(current, pageSize) {
+        console.log(current, pageSize);
     }
 
+
     render() {
-        const { bookListData}=this.props;
+        const {bookListData}=this.props;
         return (<div className="books-list">
             {bookListData.map((value, index) => {
-                return  <a key={index}  className="book" target="_blank">
-                    <img src={api.IMG_BASE_URL+value.cover}
+                return <a  key={index} className="book" target="_blank">
+                    <img src={api.IMG_BASE_URL + value.cover}
                          alt={value.title} className="cover"/>
                     <div className="right">
                         <h4 className="name"><span>{value.title}</span></h4>
@@ -54,11 +53,15 @@ export default class BookList extends Component {
                         <p className="popularity">
                             <span className="c-red">{this.getLatelyFollower(value.latelyFollower)}</span>人气
                             <span className="split">|</span>
-                            <span className="c-red">{value.retentionRatio+"%"}</span>读者留存
+                            <span className="c-red">{value.retentionRatio + "%"}</span>读者留存
                         </p>
                     </div>
                 </a>
             })}
+            <div className="c-full-page">
+                <Pagination showQuickJumper onShowSizeChange={this.onShowSizeChange}
+                            pageSize={20} total={bookListData.length}/>
+            </div>
         </div>);
     }
 }

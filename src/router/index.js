@@ -37,6 +37,12 @@ const ranking = (location, cb) => {
     },'ranking')
 };
 
+const book = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/bookPage').default)
+    },'book')
+};
+
 
 const RouteConfig = (
     <Router history={browserHistory}>
@@ -47,6 +53,7 @@ const RouteConfig = (
             <Route path="/category"   />
             <Route path="/booklist"   />
             <Route path="/rank" getComponent={ranking} />
+            <Route path="/book" getComponent={book} />
         </Route>
     </Router>
 );
