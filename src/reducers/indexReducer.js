@@ -8,9 +8,10 @@
 
 import {combineReducers} from 'redux'
 import ranking from './rankingReducer'
+import book from './bookReducer'
 
 const rootReducer = combineReducers({
-    ranking
+    ranking,book
 });
 
 export default rootReducer

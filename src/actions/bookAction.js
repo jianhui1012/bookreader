@@ -19,38 +19,17 @@ export let bookDetail = (bookid) => {
 };
 
 let getBookDetailSuccess = (data) => {
-    let male = [];
-    let maleOther = [];
-    let female = [];
-    let femaleOther = [];
-    data.male.forEach(function (item) {
-        if (item.collapse) {
-            maleOther.push(item)
-        } else {
-            male.push(item)
-        }
-    }, this);
-    data.female.forEach(function (item) {
-        if (item.collapse) {
-            femaleOther.push(item)
-        } else {
-            female.push(item)
-        }
-    }, this);
     return {
         type: types.BOOK_DETAIL,
-        isLoading: false,
-        male: male,
-        maleOther: maleOther,
-        female: female,
-        femaleOther: femaleOther
+        bookDetail:data,
+        isLoadingDetail: false,
     }
 }
 
 let getBookDetailLoading = (type, isLoading) => {
     return {
         type: type,
-        isLoading: isLoading
+        isLoadingDetail: isLoading
     }
 };
 //加载失败
@@ -77,8 +56,7 @@ export let bookHotReview = (id) => {
 let getBookHotReviewSuccess = (data) => {
     return {
         type: types.BOOK_HOT_REVIEW,
-        isLoadingDetail: false,
-        bookHotReview: data
+        bookCommentList: data
     }
 };
 
@@ -98,7 +76,6 @@ export let recommondBookList = (id) => {
 let getRecommondBookListSuccess = (data) => {
     return {
         type: types.BOOK_RECOMMEND_BOOK_LIST,
-        isLoadingDetail: false,
-        bookHotReview: data
+        bookRecommendList: data,
     }
 };
