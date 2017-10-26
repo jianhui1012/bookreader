@@ -35,10 +35,12 @@ export default class BDContent extends Component {
 
     render() {
         const {bookInfo}=this.props;
+        if(JSON.stringify(bookInfo) == "{}")
+            return <div/>;
         return (<div className="detail-left">
             <div className="book-info">
                 <img
-                    src={api.API_BASE_URL + bookInfo.cover}
+                    src={api.IMG_BASE_URL + bookInfo.cover}
                     alt={bookInfo.title} className="cover"/>
                 <div className="info">
                     <h1>{bookInfo.title}</h1>

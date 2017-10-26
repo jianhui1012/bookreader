@@ -12,12 +12,24 @@ export default class BookList extends Component {
     static defaultProps = {
         title: "请输入标题",
         bookListData: [],
+        pageSize:20
     };
 
     constructor(props) {
         super(props);
+        this.total=this.props.bookListData.length;
+        this.bookListData=this.props.bookListData;
+        this.state={
+            bookListData:this.bookListData
+        };
     }
 
+    componentDidMount() {
+        let curData=this.state.bookListData.slice(0,this.props.pageSize);
+        this.setState({
+            bookListData:curData
+        });
+    }
 
     shouldComponentUpdate(nextProps, nextState) {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
@@ -31,15 +43,21 @@ export default class BookList extends Component {
         }
     }
 
-    onShowSizeChange(current, pageSize) {
-        console.log(current, pageSize);
+    onShowSizeChange(current, size){
+
     }
 
+    onChange(page, pageSize){
+        let curData= this.bookListData.slice((page-1)*pageSize,page*pageSize);
+        console.log(page+"-"+pageSize+",curData:"+curData.length);
+        this.setState({
+            bookListData:curData
+        });
+    }
 
     render() {
-        const {bookListData}=this.props;
         return (<div className="books-list">
-            {bookListData.map((value, index) => {
+            {this.state.bookListData.map((value, index) => {
                 return <a onClick={()=>{
                     browserHistory.push({
                         pathname: '/book',
@@ -65,8 +83,8 @@ export default class BookList extends Component {
                 </a>
             })}
             <div className="c-full-page">
-                <Pagination showQuickJumper onShowSizeChange={this.onShowSizeChange}
-                            pageSize={20} total={bookListData.length}/>
+                <Pagination showQuickJumper onShowSizeChange={this.onShowSizeChange.bind(this)} onChange={this.onChange.bind(this)}
+                            pageSize={this.props.pageSize} total={this.total}/>
             </div>
         </div>);
     }

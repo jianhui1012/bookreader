@@ -42,25 +42,67 @@ img {
   border: 0 none;
 }
 
+.page-detail-container .detail-left .book-section, .page-detail-container .detail-right .block {
+  margin-bottom: 40px;
+}
+
+.page-detail-container .detail-left .book-section {
+  h3 {
+    position: relative;
+    padding-left: 5px;
+    border-left: 3px solid #cab389;
+    font-size: 16px;
+    color: #666;
+  }
+  .intro {
+    position: relative;
+    line-height: 20px;
+    font-size: 12px;
+    color: #666;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .content {
+    padding: 20px 0;
+    font-size: 14px;
+  }
+}
+
 .page-detail-container .detail-left .book-info .info {
   margin-left: 150px;
   height: 100%;
+  h1 {
+    line-height: 25px;
+    font-size: 20px;
+    color: #666;
+  }
+  .tags {
+    padding: 10px 0 0;
+  }
 }
 
-.page-detail-container .detail-left .book-info .info h1 {
-  line-height: 25px;
-  font-size: 20px;
-  color: #666;
-}
-
-.page-detail-container .detail-left .book-info .info .tags {
-  padding: 10px 0 0;
-}
 
 .page-detail-container .detail-left .book-info .info .sup {
   padding: 6px 0;
   color: #999;
   font-size: 12px;
+}
+
+.page-detail-container .detail-left .book-info .info .tags i, .page-detail-container .detail-left .book-section h3 .more i {
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.page-detail-container .detail-left .book-info .info .tags i {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 10px;
+  margin-right: 10px;
+  color: #fff;
+  background-color: #86d196;
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 
 .page-detail-container .detail-left .book-info .info .sup span, .page-detail-container .detail-left .book-section .comment-list li .right-content .name .date, .split {
@@ -77,4 +119,33 @@ img {
   color: #fff;
   background-color: #d82626;
   font-size: 14px;
+}
+
+.page-detail-container .detail-left .book-data {
+  border-bottom: 1px solid #ddd;
+  padding: 40px 0 30px;
+  margin-bottom: 20px;
+  div {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32%;
+    text-align: center;
+    .key {
+      display: block;
+      height: 20px;
+      line-height: 20px;
+      color: #999;
+      font-size: 14px;
+      font-style: normal;
+    }
+    .value {
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      font-size: 18px;
+      font-weight: 700;
+      font-style: normal;
+      color: #d82626;
+    }
+  }
 }

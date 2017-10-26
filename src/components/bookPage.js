@@ -28,7 +28,7 @@ class Book extends Component {
     renderContent(type) {
         let content = <div/>;
         if (!type) {
-            content = <BDContent boolDetail={this.props.book.bookDetail}/>;
+            content = <BDContent bookInfo={this.props.book.bookDetail}/>;
         } else {
             content = <div className="loading">加载中</div>;
         }

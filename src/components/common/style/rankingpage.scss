@@ -7,28 +7,28 @@
 .container {
   width: 1200px;
   margin: 0 auto;
+
+  .content {
+    float: right;
+    width: 880px;
+    padding: 0 15px;
+    background: #fff;
+  }
+  .title {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    padding-left: 15px;
+    color: #cab389;
+    font-size: 22px;
+    font-weight: 700;
+  }
 }
 
 section {
   clear: both;
 }
 
-.content {
-  float: right;
-  width: 880px;
-  padding: 0 15px;
-  background: #fff;
-}
-
-.content .title {
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-  padding-left: 15px;
-  color: #cab389;
-  font-size: 22px;
-  font-weight: 700;
-}
 
 .c-full-menu .menu-title {
   width: 100%;
