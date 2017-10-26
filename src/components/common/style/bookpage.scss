@@ -1,0 +1,80 @@
+.page-detail-container {
+  width: 930px;
+  padding: 70px 120px 0;
+  margin: 50px auto;
+  background: #fff;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.page-detail-container .detail-right {
+  float: right;
+  width: 220px;
+}
+
+.page-detail-container .detail-left {
+  margin-right: 250px;
+}
+
+.page-detail-container .detail-bottom {
+  margin-top: 60px;
+  border-top: 1px solid #ddd;
+  height: 80px;
+  line-height: 26px;
+  padding-top: 20px;
+}
+
+.page-detail-container .detail-left .book-info {
+  width: 100%;
+}
+
+.page-detail-container .detail-left .book-info .cover {
+  float: left;
+  width: 120px;
+  height: 150px;
+  box-shadow: 0 4px 5px #bbb;
+}
+
+img {
+  max-width: 100%;
+  border: 0 none;
+}
+
+.page-detail-container .detail-left .book-info .info {
+  margin-left: 150px;
+  height: 100%;
+}
+
+.page-detail-container .detail-left .book-info .info h1 {
+  line-height: 25px;
+  font-size: 20px;
+  color: #666;
+}
+
+.page-detail-container .detail-left .book-info .info .tags {
+  padding: 10px 0 0;
+}
+
+.page-detail-container .detail-left .book-info .info .sup {
+  padding: 6px 0;
+  color: #999;
+  font-size: 12px;
+}
+
+.page-detail-container .detail-left .book-info .info .sup span, .page-detail-container .detail-left .book-section .comment-list li .right-content .name .date, .split {
+  padding: 0 10px;
+}
+
+.page-detail-container .detail-left .book-info .info .start-read, .page-detail-container .detail-left .book-info .info .start-read:visited {
+  margin-top: 8px;
+  width: 120px;
+  height: 30px;
+  display: block;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  background-color: #d82626;
+  font-size: 14px;
+}

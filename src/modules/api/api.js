@@ -24,7 +24,7 @@ module.exports = {
   // GET  书籍详情
   BOOK_DETAIL: (bookId) => {return API_BASE_URL + '/book/' + bookId}, 
   // GET 热门评论 url?book=id
-  BOOK_HOT_REVIEW: API_BASE_URL + '/post/review/best-by-book',
+  BOOK_HOT_REVIEW:(bookId)=> {return API_BASE_URL + '/post/review/best-by-book'+bookId},
   // GET 根据id推荐书单 url?limit=3 
   BOOK_RECOMMEND_BOOK_LIST: (bookId) => {return API_BASE_URL + '/book-list/' + bookId + '/recommend'}, 
   // GET 通过作者查询书名 url?author=''

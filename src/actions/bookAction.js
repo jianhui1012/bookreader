@@ -5,12 +5,12 @@ import * as types from '../modules/constants/actionTypes'
 import request from '../modules/api/httpUtil'
 import api from '../modules/api/api'
 //GET 书籍详情
-export let bookDetail = (bookid) => {
+export let bookDetail = (bookId) => {
     return dispatch => {
         dispatch(getBookDetailLoading(types.BOOK_DETAIL_LOADING, true))
-        return request.get(api.BOOK_DETAIL(bookid), null,
+        return request.get(api.BOOK_DETAIL(bookId), null,
             (data) => {
-                data.ok ? dispatch(getBookDetailSuccess(data)) : dispatch(getBookDetailSuccess(null))
+                data? dispatch(getBookDetailSuccess(data)) : dispatch(getBookDetailSuccess(null))
             },
             (error) => {
                 dispatch(getFailure(types.BOOK_DETAI_FAILURE, error))
@@ -41,9 +41,9 @@ let getFailure = (type, error) => {
 };
 
 //GET 热门评论
-export let bookHotReview = (id) => {
+export let bookHotReview = (bookId) => {
     return dispatch => {
-        return request.get(api.BOOK_HOT_REVIEW + "?book=" + id, null,
+        return request.get(api.BOOK_HOT_REVIEW(bookId), null,
             (data) => {
                 data.ok ? dispatch(getBookHotReviewSuccess(data.ranking)) : dispatch(getBookHotReviewSuccess(null))
             },
@@ -61,9 +61,9 @@ let getBookHotReviewSuccess = (data) => {
 };
 
 //GET 根据id推荐书单 url?limit=3
-export let recommondBookList = (id) => {
+export let recommondBookList = (bookId) => {
     return dispatch => {
-        return request.get(api.BOOK_HOT_REVIEW + "?book=" + id, null,
+        return request.get(api.BOOK_RECOMMEND_BOOK_LIST(bookId), null,
             (data) => {
                 data.ok ? dispatch(getRecommondBookListSuccess(data.ranking)) : dispatch(getRecommondBookListSuccess(null))
             },

@@ -2,6 +2,7 @@
  * Created by golike on 2017/10/21.
  */
 import React, {Component} from 'react'
+import {browserHistory} from 'react-router';
 import {is, fromJS} from 'immutable';
 import api from '../../../modules/api/api'
 import  {Pagination} from 'antd'
@@ -39,7 +40,12 @@ export default class BookList extends Component {
         const {bookListData}=this.props;
         return (<div className="books-list">
             {bookListData.map((value, index) => {
-                return <a  key={index} className="book" target="_blank">
+                return <a onClick={()=>{
+                    browserHistory.push({
+                        pathname: '/book',
+                        query: {bookId: value._id},
+                    });
+                }} key={index} className="book" target="_blank">
                     <img src={api.IMG_BASE_URL + value.cover}
                          alt={value.title} className="cover"/>
                     <div className="right">
