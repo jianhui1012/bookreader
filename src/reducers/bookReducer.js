@@ -32,12 +32,12 @@ export default function book(state = initialState, action) {
             })
         case types.BOOK_HOT_REVIEW:
             return Object.assign({}, state, {
-                bookRecommendList: action.bookRecommendList
+                bookCommentList: action.bookCommentList,
+                totalComment:action.bookCommentList.length
             })
         case types.BOOK_RECOMMEND_BOOK_LIST:
             return Object.assign({}, state, {
-                bookCommentList: action.bookCommentList,
-                totalComment:action.bookCommentList.length
+                bookRecommendList: action.bookRecommendList
             })
         default:
             return state

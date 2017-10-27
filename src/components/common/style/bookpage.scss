@@ -7,15 +7,123 @@
 
 .clearfix {
   zoom: 1;
+  display: table;
 }
 
 .page-detail-container .detail-right {
   float: right;
   width: 220px;
+  .app-download {
+    background-color: #f3f3f3;
+    text-align: center;
+    .tip {
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+    }
+  }
+  .block {
+    margin-bottom: 40px;
+    .content {
+      padding: 20px 0;
+    }
+    .title {
+      height: 40px;
+      line-height: 60px;
+      color: #777;
+      text-align: center;
+      font-size: 14px;
+    }
+  }
+}
+
+.page-detail-container .detail-right .recommend-list li {
+  margin-bottom: 30px;
+  img {
+    float: left;
+    width: 96px;
+    height: 118px;
+    margin-right: 14px;
+    box-shadow: 0 4px 5px #bbb;
+  }
+  .info {
+    float: left;
+    width: 110px;
+    h4 {
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 10px;
+    }
+    .author {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .desc {
+      margin-top: 10px;
+      font-size: 12px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  }
 }
 
 .page-detail-container .detail-left {
   margin-right: 250px;
+}
+
+.page-detail-container .detail-left .book-section .comment-list {
+  padding: 20px 0 0;
+  overflow: hidden;
+}
+
+.page-detail-container .detail-left .book-section .comment-list li .good {
+  position: absolute;
+  right: 0;
+  top: 0;
+  i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    background: url(../images/icon/good.png) center center no-repeat;
+    background-repeat: no-repeat;
+    background-position: center left;
+  }
+  span {
+    display: inline-block;
+    vertical-align: sub;
+    color: #999;
+    font-size: 13px;
+    padding-left: 5px;
+  }
+}
+
+.page-detail-container .detail-left .book-section .comment-list li .avater {
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+}
+
+.page-detail-container .detail-left .book-section .comment-list li .right-content {
+  margin-left: 50px;
+  .name {
+    height: 20px;
+    line-height: 20px;
+    color: #3c98c9;
+    font-size: 12px;
+  }
+  .con {
+    line-height: 18px;
+    margin: 5px 0;
+    font-size: 12px;
+    color: #666;
+    text-overflow: ellipsis;
+  }
 }
 
 .page-detail-container .detail-bottom {
@@ -35,11 +143,6 @@
   width: 120px;
   height: 150px;
   box-shadow: 0 4px 5px #bbb;
-}
-
-img {
-  max-width: 100%;
-  border: 0 none;
 }
 
 .page-detail-container .detail-left .book-section, .page-detail-container .detail-right .block {
@@ -80,7 +183,6 @@ img {
     padding: 10px 0 0;
   }
 }
-
 
 .page-detail-container .detail-left .book-info .info .sup {
   padding: 6px 0;

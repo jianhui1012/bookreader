@@ -45,7 +45,7 @@ export let bookHotReview = (bookId) => {
     return dispatch => {
         return request.get(api.BOOK_HOT_REVIEW(bookId), null,
             (data) => {
-                data.ok ? dispatch(getBookHotReviewSuccess(data.ranking)) : dispatch(getBookHotReviewSuccess(null))
+                data.ok ? dispatch(getBookHotReviewSuccess(data.reviews)) : dispatch(getBookHotReviewSuccess(null))
             },
             (error) => {
                 dispatch(getFailure(types.BOOK_HOT_REVIEW, error))
@@ -65,7 +65,7 @@ export let recommondBookList = (bookId) => {
     return dispatch => {
         return request.get(api.BOOK_RECOMMEND_BOOK_LIST(bookId), null,
             (data) => {
-                data.ok ? dispatch(getRecommondBookListSuccess(data.ranking)) : dispatch(getRecommondBookListSuccess(null))
+                data.ok ? dispatch(getRecommondBookListSuccess(data.booklists)) : dispatch(getRecommondBookListSuccess(null))
             },
             (error) => {
                 dispatch(getFailure(types.BOOK_RECOMMEND_BOOK_LIST, error))

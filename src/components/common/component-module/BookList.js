@@ -6,6 +6,7 @@ import {browserHistory} from 'react-router';
 import {is, fromJS} from 'immutable';
 import api from '../../../modules/api/api'
 import  {Pagination} from 'antd'
+import '../style/boolist.scss'
 
 export default class BookList extends Component {
 
@@ -19,6 +20,7 @@ export default class BookList extends Component {
         super(props);
         this.total=this.props.bookListData.length;
         this.bookListData=this.props.bookListData;
+        this.pageSize=this.props.pageSize;
         this.state={
             bookListData:this.bookListData
         };
@@ -43,16 +45,14 @@ export default class BookList extends Component {
         }
     }
 
-    onShowSizeChange(current, size){
-
-    }
-
     onChange(page, pageSize){
-        let curData= this.bookListData.slice((page-1)*pageSize,page*pageSize);
-        console.log(page+"-"+pageSize+",curData:"+curData.length);
-        this.setState({
-            bookListData:curData
-        });
+        setTimeout(()=>{
+            let curData= this.bookListData.slice((page-1)*pageSize,page*pageSize);
+            console.log(page+"-"+pageSize+",curData:"+curData.length);
+            this.setState({
+                bookListData:curData
+            });
+        },200);
     }
 
     render() {
@@ -83,8 +83,8 @@ export default class BookList extends Component {
                 </a>
             })}
             <div className="c-full-page">
-                <Pagination showQuickJumper onShowSizeChange={this.onShowSizeChange.bind(this)} onChange={this.onChange.bind(this)}
-                            pageSize={this.props.pageSize} total={this.total}/>
+                <Pagination showQuickJumper={true} onChange={this.onChange.bind(this)}
+                            pageSize={this.pageSize} total={this.total}/>
             </div>
         </div>);
     }

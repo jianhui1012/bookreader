@@ -4,6 +4,8 @@
 import React, {Component} from 'react'
 import {is, fromJS} from 'immutable';
 import api from '../../../modules/api/api'
+import { Rate } from 'antd';
+import '../style/boolist.scss'
 
 export default class BDContent extends Component {
 
@@ -29,13 +31,28 @@ export default class BDContent extends Component {
         }
     }
 
-    getUpdateTime(updateTime) {
+    getLatelyFollower(latelyFollower) {
+        if (latelyFollower >= 10000) {
+            return (latelyFollower / 10000).toFixed(2) + "万";
+        } else {
+            return latelyFollower + "";
+        }
+    }
 
+    getUpdateTime(updateTime) {
+        let currentTime = new Date().getTime();
+        let middleTime = (currentTime - Date.parse(updateTime)) / (1000 * 60 );
+        if(middleTime<60){
+            middleTime=middleTime.toFixed(0) + "分钟前更新";
+        }else if(middleTime>=60){
+            middleTime=middleTime.toFixed(0)/60 + "小时前更新";
+        }
+        return middleTime;
     }
 
     render() {
-        const {bookInfo}=this.props;
-        if(JSON.stringify(bookInfo) == "{}")
+        const {bookInfo,bookCommentList}=this.props;
+        if (JSON.stringify(bookInfo) == "{}")
             return <div/>;
         return (<div className="detail-left">
             <div className="book-info">
@@ -50,7 +67,7 @@ export default class BDContent extends Component {
                     </p>
                     <p className="sup">{bookInfo.author}<span>|</span>{bookInfo.minorCate}<span>|</span>{this.getWordCount(bookInfo.wordCount)}
                     </p>
-                    <p className="sup">{bookInfo.updated}</p>
+                    <p className="sup">{this.getUpdateTime(bookInfo.updated)}</p>
                     <a onClick={() => {
                         console.log("_id:" + bookInfo._id);
                     }} className="start-read" target="_blank">开始阅读</a>
@@ -59,7 +76,7 @@ export default class BDContent extends Component {
             <div className="book-data">
                 <div>
                     <i className="key">追书人数</i>
-                    <i className="value">{bookInfo.latelyFollower}</i>
+                    <i className="value">{this.getLatelyFollower(bookInfo.latelyFollower)}</i>
                 </div>
                 <div>
                     <i className="key">读者留存率</i>
@@ -77,6 +94,32 @@ export default class BDContent extends Component {
                 <p className="content intro">
                     {bookInfo.longIntro}
                 </p>
+            </div>
+            <div className="book-section">
+                <h3>《{bookInfo.title}》热门书评:</h3>
+                <div className="c-loader" style={{display: "none"}}></div>
+                <ul className="comment-list">
+                    {bookCommentList.map((value,index)=>{
+                        return  <li key={index} className="clearfix">
+                            <div className="good">
+                                <i></i>
+                                <span>{value.likeCount}</span>
+                            </div>
+                            <img src={api.IMG_BASE_URL+value.author.avatar}   className="avater"/>
+                            <div className="right-content">
+                                <p className="name">{value.author.nickname} <span className="date">{value.updated}</span></p>
+                                <Rate disabled defaultValue={value.rating} />
+                                <p className="con">
+                                    {value.content}
+                                </p>
+                            </div>
+                        </li>;
+                    })}
+                </ul>
+                {/*<div className="clearfix"  >*/}
+                    {/*<div className="c-full-page">*/}
+                    {/*</div>*/}
+                {/*</div>*/}
             </div>
         </div>);
     }
