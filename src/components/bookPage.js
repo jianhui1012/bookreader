@@ -7,7 +7,7 @@ import {bookDetail, bookHotReview, recommondBookList} from '../actions/bookActio
 import BDContent from './common/component-module/BDContent'
 import BDRightMenu from './common/component-module/BDRightMenu'
 import './common/style/bookpage.scss'
-
+//书籍详情页面
 class Book extends Component {
     constructor(props) {
         super(props);

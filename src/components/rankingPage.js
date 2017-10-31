@@ -14,7 +14,7 @@ import LeftMenu from './common/component-module/LeftMenu'
 import TopMenu from './common/component-module/TopMenu'
 import BookList from './common/component-module/BookList'
 
-
+//排行榜页面
 class Ranking extends Component {
     constructor(props) {
         super(props);
