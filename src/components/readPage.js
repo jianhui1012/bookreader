@@ -37,8 +37,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => ({
     getReadBookChapterList: (id) => {
         dispatch(readBookChapterList(id))
-    }, getReadBookChapterDetail: (chapterUrl) => {
-        dispatch(readBookChapterDetail(chapterUrl))
+    }, getReadBookChapterDetail: (chapterUrl,num,title) => {
+        dispatch(readBookChapterDetail(chapterUrl,num,title))
     }
 });
 

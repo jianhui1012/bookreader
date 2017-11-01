@@ -19,20 +19,19 @@ export let readBookChapterList = (bookId) => {
 
 let getReadBookChapterListSuccess = (data) => {
     return {
-        type: types.BOOK_DETAIL,
-        bookDetail: data,
-        isLoadingDetail: false,
+        type: types.READ_BOOK_CHAPTER_LIST,
+        bookChapterList: data,
     }
 }
 
 //GET 读取章节详情
-export let readBookChapterDetail = (chapterUrl) => {
+export let readBookChapterDetail = (chapterUrl,num,title) => {
     return dispatch => {
         dispatch(getBookChapterDetailLoading(types.READ_BOOK_CHAPTER_DETAIL_LOADING, true));
         let tempUrl = chapterUrl.replace(/\//g, '%2F').replace('?', '%3F')
         return request.get(api.READ_BOOK_CHAPTER_DETAIL(tempUrl), null,
             (data) => {
-                data.ok ? dispatch(getReadBookChapterDetailSuccess(data)) : dispatch(getReadBookChapterDetailSuccess(null))
+                data.ok ? dispatch(getReadBookChapterDetailSuccess(data,num,title)) : dispatch(getReadBookChapterDetailSuccess(null))
             },
             (error) => {
                 dispatch(getFailure(types.READ_BOOK_CHAPTER_DETAIL_FAILURE, error))
@@ -47,15 +46,21 @@ let getBookChapterDetailLoading = (type, isLoading) => {
     }
 };
 
-let getReadBookChapterDetailSuccess = (data,num) => {
+//加载失败
+let getFailure = (type, error) => {
+    return {
+        type: type,
+        error: JSON.stringify(error)
+    }
+};
+
+let getReadBookChapterDetailSuccess = (data,num,title) => {
     let _currentChapter = data.chapter.body;
     let _arr = _formatChapter(_currentChapter, num,title);
     return {
         type: types.READ_BOOK_CHAPTER_DETAIL,
-        bookChapter: bookChapter,
         chapterDetail: _arr,
         chapterNum: num,
-        chapterLength: bookChapter.chapters.length,
         isLoadingDetail: false,
     }
 };
@@ -103,10 +108,3 @@ export let contentFormat = (content) => {
     return array
 };
 
-//加载失败
-let getFailure = (type, error) => {
-    return {
-        type: type,
-        error: JSON.stringify(error)
-    }
-};
