@@ -6,6 +6,7 @@ import * as types from "../modules/constants/actionTypes";
 const initialState = {
     bookDetail: {},
     bookChapterList: [],
+    totalChapter:0,
     bookRecommendList:[],
     bookCommentList: [],
     totalComment: 0,
@@ -38,6 +39,11 @@ export default function book(state = initialState, action) {
         case types.BOOK_RECOMMEND_BOOK_LIST:
             return Object.assign({}, state, {
                 bookRecommendList: action.bookRecommendList
+            })
+        case types.READ_BOOK_CHAPTER_LIST:
+            return Object.assign({}, state, {
+                bookChapterList: action.bookChapterList,
+                totalChapter:action.bookChapterList.length
             })
         default:
             return state

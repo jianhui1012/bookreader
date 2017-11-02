@@ -43,9 +43,16 @@ const book = (location, cb) => {
     },'book')
 };
 
+const read = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/readPage').default)
+    },'read')
+};
+
 
 const RouteConfig = (
     <Router history={browserHistory}>
+        <Route path="/read" getComponent={read}/>
         <Route path="/" component={roots}>
             <IndexRoute getComponent={home} />
             <Route path="/home" getComponent={home}/>

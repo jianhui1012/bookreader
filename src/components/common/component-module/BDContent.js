@@ -2,9 +2,10 @@
  * Created by admin on 2017/10/26.
  */
 import React, {Component} from 'react'
+import {browserHistory} from 'react-router';
 import {is, fromJS} from 'immutable';
 import api from '../../../modules/api/api'
-import { Rate } from 'antd';
+import {Rate} from 'antd';
 import '../style/boolist.scss'
 
 export default class BDContent extends Component {
@@ -42,22 +43,22 @@ export default class BDContent extends Component {
     getUpdateTime(updateTime) {
         let currentTime = new Date().getTime();
         let middleTime = (currentTime - Date.parse(updateTime)) / (1000 * 60 );
-        if(middleTime<60){
-            middleTime=middleTime.toFixed(0) + "分钟前更新";
-        }else if(60<=middleTime&&middleTime<60*24){
-            middleTime=(middleTime/60).toFixed(0) + "小时前更新";
-        }else if(middleTime>=60*24){
-            middleTime=(middleTime/(60*24)).toFixed(0) + "小时前更新";
+        if (middleTime < 60) {
+            middleTime = middleTime.toFixed(0) + "分钟前更新";
+        } else if (60 <= middleTime && middleTime < 60 * 24) {
+            middleTime = (middleTime / 60).toFixed(0) + "小时前更新";
+        } else if (middleTime >= 60 * 24) {
+            middleTime = (middleTime / (60 * 24)).toFixed(0) + "小时前更新";
         }
         return middleTime;
     }
 
-    getCommentDateTime(updateTime){
+    getCommentDateTime(updateTime) {
         return new Date(updateTime).toLocaleString();
     }
 
     render() {
-        const {bookInfo,bookCommentList}=this.props;
+        const {bookInfo, bookCommentList, bookChapterList}=this.props;
         if (JSON.stringify(bookInfo) == "{}")
             return <div/>;
         return (<div className="detail-left">
@@ -104,23 +105,47 @@ export default class BDContent extends Component {
             <div className="book-section">
                 <h3>《{bookInfo.title}》最新章节:</h3>
                 <ul className="chapter-list clearfix">
-                    <li><a href="#">{bookInfo.lastChapter}</a></li>
+                    <li><a onClick={() => {
+                        browserHistory.push({
+                            pathname: '/read',
+                            state: {
+                                bookId: bookInfo._id
+                            }
+                        });
+                    }}>{bookInfo.lastChapter}</a></li>
+                </ul>
+            </div>
+            <div className="book-section">
+                <h3>《{bookInfo.title}》目录:</h3>
+                <ul className="chapter-list hidden-list">
+                    {bookChapterList.map((value, index) => {
+                        return <li key={index}><a onClick={() => {
+                            browserHistory.push({
+                                pathname: '/read',
+                                state: {
+                                    chapter: JSON.stringify(value),
+                                    bookId: bookInfo._id
+                                }
+                            });
+                        }}>{value.title}</a></li>;
+                    })}
                 </ul>
             </div>
             <div className="book-section">
                 <h3>《{bookInfo.title}》热门书评:</h3>
                 <div className="c-loader" style={{display: "none"}}></div>
                 <ul className="comment-list">
-                    {bookCommentList.map((value,index)=>{
-                        return  <li key={index} className="clearfix">
+                    {bookCommentList.map((value, index) => {
+                        return <li key={index} className="clearfix">
                             <div className="good">
                                 <i></i>
                                 <span>{value.likeCount}</span>
                             </div>
-                            <img src={api.IMG_BASE_URL+value.author.avatar}   className="avater"/>
+                            <img src={api.IMG_BASE_URL + value.author.avatar} className="avater"/>
                             <div className="right-content">
-                                <p className="name">{value.author.nickname} <span className="date">{this.getCommentDateTime(value.updated)}</span></p>
-                                <Rate disabled defaultValue={value.rating} />
+                                <p className="name">{value.author.nickname} <span
+                                    className="date">{this.getCommentDateTime(value.updated)}</span></p>
+                                <Rate disabled defaultValue={value.rating} style={{fontSize: 14}}/>
                                 <p className="con">
                                     {value.content}
                                 </p>
@@ -129,8 +154,8 @@ export default class BDContent extends Component {
                     })}
                 </ul>
                 {/*<div className="clearfix"  >*/}
-                    {/*<div className="c-full-page">*/}
-                    {/*</div>*/}
+                {/*<div className="c-full-page">*/}
+                {/*</div>*/}
                 {/*</div>*/}
             </div>
         </div>);

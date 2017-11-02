@@ -74,9 +74,39 @@
   margin-right: 250px;
 }
 
+.page-detail-container .detail-left .book-section .hidden-list {
+  height: 410px;
+  overflow: hidden;
+}
+
+.page-detail-container .detail-left .book-section .chapter-list {
+  overflow: hidden;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.page-detail-container .detail-left .book-section .chapter-list li {
+  float: left;
+  width: 50%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+}
+
+.page-detail-container .detail-left .book-section .chapter-list li a, .page-detail-container .detail-left .book-section .chapter-list li a:visited {
+  padding-left: 40px;
+  color: #666;
+}
+
 .page-detail-container .detail-left .book-section .comment-list {
   padding: 20px 0 0;
   overflow: hidden;
+}
+
+.page-detail-container .detail-left .book-section .comment-list li {
+  position: relative;
 }
 
 .page-detail-container .detail-left .book-section .comment-list li .good {

@@ -20,7 +20,7 @@ export let readBookChapterList = (bookId) => {
 let getReadBookChapterListSuccess = (data) => {
     return {
         type: types.READ_BOOK_CHAPTER_LIST,
-        bookChapterList: data,
+        bookChapterList: data.mixToc.chapters,
     }
 }
 
