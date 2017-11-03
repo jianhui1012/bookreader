@@ -11,6 +11,8 @@ import './common/style/readpage.scss'
 class Read extends Component {
     constructor(props) {
         super(props);
+        const docEl = document.body;
+        docEl.style.background = '#d1d6be';
         let data = this.props.location.state;
         console.log(JSON.stringify(data));
         this.bookId = data ? data.bookId : -1;
@@ -25,7 +27,7 @@ class Read extends Component {
             return;
         }
         // //加载章节
-        // this.props.getReadBookChapterDetail(this.chapter.chapterUrl, this.chapter.num, this.chapter.title);
+        this.props.getReadBookChapterDetail(this.chapter.chapterUrl, this.chapter.num, this.chapter.title);
         // //加载章节列表
         // this.props.getReadBookChapterList(this.bookId);
     }
@@ -42,14 +44,13 @@ class Read extends Component {
                 break;
             case ConstData.DATA_SUCCESS:
                 renderContent = <div id="J_content">
-                    <h4 className="title clearfix">
-                        <span>{}</span>
-                        <span className="current-chapter">{}</span>
+                    <h4 className="title">
+                        <span>{this.chapter.bookName}</span>
+                        <span className="current-chapter">{this.chapter.title}</span>
                     </h4>
                     <div className="content">
                         <input type="hidden" id="J_vip" name="" value="false"/>
-                        <div className="inner-text">
-                            {}
+                        <div className="inner-text" dangerouslySetInnerHTML={{__html:this.props.read.chapterDetail}}>
                         </div>
                     </div>
                 </div>;

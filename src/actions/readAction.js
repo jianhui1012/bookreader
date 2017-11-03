@@ -56,10 +56,11 @@ let getFailure = (type, error) => {
 
 let getReadBookChapterDetailSuccess = (data,num,title) => {
     let _currentChapter = data.chapter.body;
-    let _arr = _formatChapter(_currentChapter, num,title);
+    let _content =  _currentChapter.replace(/\n/g, '<br/><br/>');
+    //let _arr = _formatChapter(_currentChapter, num,title);
     return {
         type: types.READ_BOOK_CHAPTER_DETAIL,
-        chapterDetail: _arr,
+        chapterDetail: _content,
         chapterNum: num,
         isLoadingDetail: false,
     }
@@ -81,8 +82,8 @@ let _formatChapter=(content, num, title)=> {
 };
 
 export let contentFormat = (content) => {
-    let fontCount = parseInt(window.width / 18 - 1);
-    let fontLines = parseInt((window.height - 100) / 34);
+    let fontCount = parseInt(window.innerWidth / 18 - 1);
+    let fontLines = parseInt((window.innerHeight - 100) / 34);
     const length = content.length;
     let array = [];
     let x = 0, y, m = 0;

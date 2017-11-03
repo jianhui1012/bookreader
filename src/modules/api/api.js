@@ -4,7 +4,8 @@
  */
 
 const API_BASE_URL = 'http://localhost:8088';//http://api.zhuishushenqi.com'
-const IMG_BASE_URL = 'http://statics.zhuishushenqi.com'
+const IMG_BASE_URL = 'http://statics.zhuishushenqi.com';
+const API_CHAPTER_URL = 'http://localhost:8088/chapter/';
 
 module.exports = {
   API_BASE_URL: API_BASE_URL,
@@ -62,9 +63,9 @@ module.exports = {
   // ----------------read platform----------------
   // GET 获取书的章节信息 http://api.zhuishushenqi.com/mix-atoc/5569ba444127a49f1fa99d29?view=chapters
   READ_BOOK_CHAPTER_LIST: (bookId) => {return API_BASE_URL + '/mix-atoc/' + bookId + '?view=chapters'}, 
-  // GET 获取书的章节详情
+  // GET 获取书的章节详情 'http://chapter2.zhuishushenqi.com/chapter/'
     // http://chapter2.zhuishushenqi.com/chapter/http:%2F%2Fbook.my716.com%2FgetBooks.aspx%3Fmethod=content&bookId=633074&chapterFile=U_753547_201607012243065574_6770_1.txt
-  READ_BOOK_CHAPTER_DETAIL: (chapterUrl) => {return 'http://chapter2.zhuishushenqi.com/chapter/' + chapterUrl}, 
+  READ_BOOK_CHAPTER_DETAIL: (chapterUrl) => {return API_CHAPTER_URL + chapterUrl},
 
   // ----------------discover----------------
   // GET 排行榜

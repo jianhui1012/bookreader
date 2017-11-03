@@ -123,7 +123,7 @@ export default class BDContent extends Component {
                             browserHistory.push({
                                 pathname: '/read',
                                 state: {
-                                    chapter: JSON.stringify(value),
+                                    chapter: {chapterUrl:value.link,num:index,title:value.title,bookName:bookInfo.title},
                                     bookId: bookInfo._id
                                 }
                             });

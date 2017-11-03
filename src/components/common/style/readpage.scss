@@ -1,10 +1,33 @@
+
 .page-reader-wraper {
   position: relative;
   width: 800px;
   margin: 40px auto;
   color: #755927;
-}
+  span{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+  }
+  .title {
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    background: #e9e6d0;
+    box-shadow: 0 2px 2px #bbb;
+    .current-chapter {
+      float: right;
+    }
+  }
 
-//body, html {
-//  background: #d1d6be!important;
-//}
+  .content {
+    position: relative;
+    margin-top: 6px;
+    min-height: 400px;
+    padding: 40px;
+    background: #e9e6d0;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
