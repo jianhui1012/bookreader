@@ -9,6 +9,7 @@ import {ranking, rankingList} from '../actions/rankingAction'
 import  './common/style/leftmenu.scss'
 import './common/style/rankingpage.scss'
 //加载antd
+import {BackTop} from 'antd';
 //加载组件
 import LeftMenu from './common/component-module/LeftMenu'
 import TopMenu from './common/component-module/TopMenu'
@@ -73,6 +74,7 @@ class Ranking extends Component {
     render() {
         const {ranking} = this.props;
         return <section className="page-ranking">
+            <BackTop/>
             <section className="container">
                 {/*左侧菜单*/}
                 <div className="c-full-sideBar">

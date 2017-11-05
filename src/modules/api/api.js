@@ -3,9 +3,9 @@
  * time: 2017年03月12日21:09:37
  */
 
-const API_BASE_URL = 'http://localhost:8088';//http://api.zhuishushenqi.com'
+const API_BASE_URL = '.';//http://api.zhuishushenqi.com'
 const IMG_BASE_URL = 'http://statics.zhuishushenqi.com';
-const API_CHAPTER_URL = 'http://localhost:8088/chapter/';
+const API_CHAPTER_URL = './chapter/';//http://chapter2.zhuishushenqi.com/chapter/
 
 module.exports = {
   API_BASE_URL: API_BASE_URL,

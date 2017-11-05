@@ -74,6 +74,29 @@
   margin-right: 250px;
 }
 
+.page-detail-container .detail-left .book-section h3 .more {
+  position: absolute;
+  right: 0;
+  font-size: 14px;
+  cursor: pointer;
+  width: 90px;
+  font-weight: 100;
+}
+
+.page-detail-container .detail-left .book-section h3 .more i {
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.page-detail-container .detail-left .book-section h3 .more .arrow {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  background: url(../images/icon/arrow-down.png) center center no-repeat;
+  background-size: 100% 100%;
+}
+
 .page-detail-container .detail-left .book-section .hidden-list {
   height: 410px;
   overflow: hidden;

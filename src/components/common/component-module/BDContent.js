@@ -17,6 +17,9 @@ export default class BDContent extends Component {
 
     constructor(props) {
         super(props);
+        this.state={
+            isShowChapterList:false
+        };
     }
 
 
@@ -55,6 +58,10 @@ export default class BDContent extends Component {
 
     getCommentDateTime(updateTime) {
         return new Date(updateTime).toLocaleString();
+    }
+
+    getChapterListClassName(){
+        return this.state.isShowChapterList ?  "chapter-list":"chapter-list hidden-list";
     }
 
     render() {
@@ -105,19 +112,26 @@ export default class BDContent extends Component {
             <div className="book-section">
                 <h3>《{bookInfo.title}》最新章节:</h3>
                 <ul className="chapter-list clearfix">
-                    <li><a onClick={() => {
-                        browserHistory.push({
-                            pathname: '/read',
-                            state: {
-                                bookId: bookInfo._id
-                            }
-                        });
-                    }}>{bookInfo.lastChapter}</a></li>
+                    {bookChapterList.slice(-10).reverse().map((value, index) => {
+                        return <li key={index}><a onClick={() => {
+                            browserHistory.push({
+                                pathname: '/read',
+                                state: {
+                                    chapter: {chapterUrl:value.link,num:index,title:value.title,bookName:bookInfo.title},
+                                    bookId: bookInfo._id
+                                }
+                            });
+                        }}>{value.title}</a></li>;
+                    })}
                 </ul>
             </div>
             <div className="book-section">
-                <h3>《{bookInfo.title}》目录:</h3>
-                <ul className="chapter-list hidden-list">
+                <h3>《{bookInfo.title}》目录:<span className="more"><i>全部章节</i><i onClick={()=>{
+                     this.setState({
+                         isShowChapterList:!this.state.isShowChapterList
+                     });
+                }} className="arrow"/></span></h3>
+                <ul className={this.getChapterListClassName()}>
                     {bookChapterList.map((value, index) => {
                         return <li key={index}><a onClick={() => {
                             browserHistory.push({
