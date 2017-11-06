@@ -7,6 +7,13 @@ import Footer from "./common/Footer";
 import './common/style/root.scss'
 
 class Roots extends Component {
+
+    constructor(props) {
+        super(props);
+        const docEl = document.body;
+        docEl.style.background = '#ffffff';
+    }
+
     render() {
         return (
             <div>

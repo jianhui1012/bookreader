@@ -1,12 +1,7 @@
-.page-ranking{
+.page-ranking {
   display: inline-block;
   width: 100%;
   padding: 15px 0;
-}
-
-.container {
-  width: 1200px;
-  margin: 0 auto;
 
   .content {
     float: right;
@@ -22,13 +17,13 @@
     color: #cab389;
     font-size: 22px;
     font-weight: 700;
+
   }
 }
 
 section {
   clear: both;
 }
-
 
 .c-full-menu .menu-title {
   width: 100%;
@@ -142,13 +137,14 @@ img {
   -webkit-line-clamp: 2;
 }
 
-.books-list .book .right p.popularity{
+.books-list .book .right p.popularity {
   margin-top: 10px;
 }
 
 .c-red {
   color: #d82626;
 }
-.split{
+
+.split {
   padding: 0 10px;
 }
