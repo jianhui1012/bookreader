@@ -10,6 +10,7 @@ const initialState = {
     chapterNum: 0,
     totalChapter: 0,
     isLoadingDetail:false,
+    chapterTitle:"",
     error:"",
     type:types.BOOK_DETAIL,
     dataState:ConstData.DATA_EMPTY
@@ -32,6 +33,7 @@ export default function read(state = initialState, action) {
             return Object.assign({}, state, {
                 chapterDetail: action.chapterDetail,
                 chapterNum: action.chapterNum,
+                chapterTitle:action.chapterTitle,
                 isLoadingDetail: action.isLoadingDetail,
                 dataState:ConstData.DATA_SUCCESS
             })

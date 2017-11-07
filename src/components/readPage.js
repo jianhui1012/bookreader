@@ -5,8 +5,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {browserHistory} from 'react-router';
 import  * as ConstData from '../modules/constants/ConstData'
-import {readBookChapterList, readBookChapterDetail} from '../actions/readAction'
-import { message } from 'antd';
+import {readBookChapterList, readBookChapterDetail, getReadBookChapterListAndStartRead} from '../actions/readAction'
+import {message} from 'antd';
 import './common/style/readpage.scss'
 
 //阅读页面
@@ -15,30 +15,40 @@ class Read extends Component {
         super(props);
         const docEl = document.body;
         docEl.style.background = '#d1d6be';
-        let data = this.props.location.state;
-        console.log(JSON.stringify(data));
-        this.bookId = data ? data.bookId : -1;
-        this.chapter = data ? data.chapter : {};
-        this.chapterIndex = this.chapter.num;
+        this.data = this.props.location.state;
+        this.type = this.data ? this.data.type : ConstData.DATA_INVAILD;
+        this.bookId = this.data ? this.data.bookId : -1;
+        this.bookName = this.data ? this.data.bookName : -1;
         this.state = {
             chapterUrl: "",
-            title:this.chapter.title,
+            title: "",
             leftToolBarTop: 40,
             rightToolbarBottom: 0,
         };
     }
 
     componentDidMount() {
-        if (this.bookId == -1) {
+        if (this.type == ConstData.DATA_INVAILD) {
             return;
         }
-        // //加载章节
-        this.props.getReadBookChapterDetail(this.chapter.chapterUrl, this.chapter.num, this.chapter.title);
-        // //加载章节列表
-        this.props.getReadBookChapterList(this.bookId);
+        //从第一章开始
+        if (this.type == ConstData.READ_BOOK_START) {
+            console.log("READ_BOOK_START:"+this.bookId)
+            this.chapterIndex = 0;
+            //加载章节列表并设置第一章节
+            this.props.getReadBookChapterListAndStartRead(this.bookId);
+        } else
+        //根据特定章节开始
+        if (this.type == ConstData.READ_BOOK_MIDDLE) {
+            this.chapter = this.data ? this.data.chapter : {};
+            this.chapterIndex = this.chapter.num;
+            //加载章节
+            this.props.getReadBookChapterDetail(this.chapter.chapterUrl, this.chapter.num, this.chapter.title);
+            //加载章节列表
+            this.props.getReadBookChapterList(this.bookId);
+        }
         window.addEventListener('scroll', this.handleScroll.bind(this));
     }
-
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll.bind(this));
@@ -72,8 +82,8 @@ class Read extends Component {
             case ConstData.DATA_SUCCESS:
                 renderContent = <div>
                     <h4 className="title">
-                        <span>{this.chapter.bookName}</span>
-                        <span className="current-chapter">{this.state.title}</span>
+                        <span>{this.bookName}</span>
+                        <span className="current-chapter">{this.props.read.chapterTitle}</span>
                     </h4>
                     <div className="left-toolbar" style={{top: this.state.leftToolBarTop}}>
                         <a className="home" href="/" title="首页"/>
@@ -90,19 +100,19 @@ class Read extends Component {
                                 let curChapter = this.props.read.bookChapterList[--this.chapterIndex];
                                 this.props.getReadBookChapterDetail(curChapter.link, this.chapterIndex, curChapter.title);
                                 this.setState({
-                                    title:curChapter.title
+                                    title: curChapter.title
                                 });
                             }
                         }} title="上一章"/>
                         <a className="list" title="章节目录"/>
                         <a className="next" onClick={() => {
-                            if (this.chapterIndex == this.props.read.totalChapter-1) {
+                            if (this.chapterIndex == this.props.read.totalChapter - 1) {
                                 message.warning('Dear,往后没有章节了！！！');
                             } else {
                                 let curChapter = this.props.read.bookChapterList[++this.chapterIndex];
                                 this.props.getReadBookChapterDetail(curChapter.link, this.chapterIndex, curChapter.title);
                                 this.setState({
-                                    title:curChapter.title
+                                    title: curChapter.title
                                 });
                             }
                         }} title="下一章"/>
@@ -141,7 +151,9 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    getReadBookChapterList: (id) => {
+    getReadBookChapterListAndStartRead: (id) => {
+        dispatch(getReadBookChapterListAndStartRead(id))
+    }, getReadBookChapterList: (id) => {
         dispatch(readBookChapterList(id))
     }, getReadBookChapterDetail: (chapterUrl, num, title) => {
         dispatch(readBookChapterDetail(chapterUrl, num, title))

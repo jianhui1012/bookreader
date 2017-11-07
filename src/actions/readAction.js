@@ -24,14 +24,31 @@ let getReadBookChapterListSuccess = (data) => {
     }
 }
 
+export let getReadBookChapterListAndStartRead = (bookId) => {
+    return dispatch => {
+        return request.get(api.READ_BOOK_CHAPTER_LIST(bookId), null,
+            (data) => {
+            if( data.ok ){
+                dispatch(getReadBookChapterListSuccess(data));
+                let chapterList = data.mixToc.chapters;
+                //开始读取第一章
+                dispatch(readBookChapterDetail(chapterList[0].link, 0, chapterList[0].title));
+            }},
+            (error) => {
+                dispatch(getFailure(types.BOOK_DETAI_FAILURE, error))
+            })
+    }
+};
+
+
 //GET 读取章节详情
-export let readBookChapterDetail = (chapterUrl,num,title) => {
+export let readBookChapterDetail = (chapterUrl, num, title) => {
     return dispatch => {
         dispatch(getBookChapterDetailLoading(types.READ_BOOK_CHAPTER_DETAIL_LOADING, true));
         let tempUrl = chapterUrl.replace(/\//g, '%2F').replace('?', '%3F')
         return request.get(api.READ_BOOK_CHAPTER_DETAIL(tempUrl), null,
             (data) => {
-                data.ok ? dispatch(getReadBookChapterDetailSuccess(data,num,title)) : dispatch(getReadBookChapterDetailSuccess(null))
+                data.ok ? dispatch(getReadBookChapterDetailSuccess(data, num, title)) : dispatch(getReadBookChapterDetailSuccess(null))
             },
             (error) => {
                 dispatch(getFailure(types.READ_BOOK_CHAPTER_DETAIL_FAILURE, error))
@@ -54,23 +71,24 @@ let getFailure = (type, error) => {
     }
 };
 
-let getReadBookChapterDetailSuccess = (data,num,title) => {
+let getReadBookChapterDetailSuccess = (data, num, title) => {
     let _currentChapter = data.chapter.body;
-    let _content =  _currentChapter.replace(/\n/g, '<br/><br/>');
+    let _content = _currentChapter.replace(/\n/g, '<br/><br/>');
     //let _arr = _formatChapter(_currentChapter, num,title);
     return {
         type: types.READ_BOOK_CHAPTER_DETAIL,
         chapterDetail: _content,
         chapterNum: num,
+        chapterTitle:title,
         isLoadingDetail: false,
     }
 };
 
-let _formatChapter=(content, num, title)=> {
-    let _arr =[];
+let _formatChapter = (content, num, title) => {
+    let _arr = [];
     let _content = '\u3000\u3000' + content.replace(/\n/g, '@\u3000\u3000');
     let _arrTemp = contentFormat(_content);
-    _arrTemp.forEach(function(element) {
+    _arrTemp.forEach(function (element) {
         let _chapterInfo = {
             title: title,
             num: num,

@@ -49,6 +49,12 @@ const read = (location, cb) => {
     },'read')
 };
 
+const search = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/searchPage').default)
+    },'search')
+};
+
 
 const RouteConfig = (
     <Router history={browserHistory}>
@@ -61,6 +67,7 @@ const RouteConfig = (
             <Route path="/booklist"   />
             <Route path="/rank" getComponent={ranking} />
             <Route path="/book" getComponent={book} />
+            <Route path="/search" getComponent={search} />
         </Route>
     </Router>
 );

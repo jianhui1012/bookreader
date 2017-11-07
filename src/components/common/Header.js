@@ -2,6 +2,7 @@
  * Created by golike on 2017/9/28.
  */
 import React, {Component} from 'react'
+import {browserHistory} from 'react-router'
 import '../common/style/header.scss'
 
 class Header extends Component {
@@ -69,6 +70,12 @@ class Header extends Component {
                                    placeholder="搜索书名或作者"/>
                             <a id="search-btn" className="search-btn" onClick={()=>{
                                 //todo 跳转到search
+                                browserHistory.push({
+                                    pathname: '/search',
+                                    state: {
+                                        text:this.state.value
+                                    }
+                                });
                             }}/>
                         </div>
                     </div>

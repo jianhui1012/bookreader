@@ -10,9 +10,10 @@ import {combineReducers} from 'redux'
 import ranking from './rankingReducer'
 import book from './bookReducer'
 import read from './readReducer'
+import search from './searchReducer'
 
 const rootReducer = combineReducers({
-    ranking,book,read
+    ranking, book, read, search
 });
 
 export default rootReducer

@@ -65,7 +65,9 @@ export default class BookList extends Component {
                     });
                 }} key={index} className="book" target="_blank">
                     <img src={api.IMG_BASE_URL + value.cover}
-                         alt={value.title} className="cover"/>
+                           className="cover" ref={img => this.img = img} onError={(e) => {
+                               this.img.src =require('../images/img-bk.png');
+                           }}  />
                     <div className="right">
                         <h4 className="name"><span>{value.title}</span></h4>
                         <p className="author">

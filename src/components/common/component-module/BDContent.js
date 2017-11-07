@@ -4,6 +4,7 @@
 import React, {Component} from 'react'
 import {browserHistory} from 'react-router';
 import {is, fromJS} from 'immutable';
+import  * as ConstData from '../../../modules/constants/ConstData'
 import api from '../../../modules/api/api'
 import {Rate} from 'antd';
 import '../style/boolist.scss'
@@ -83,7 +84,14 @@ export default class BDContent extends Component {
                     </p>
                     <p className="sup">{this.getUpdateTime(bookInfo.updated)}</p>
                     <a onClick={() => {
-                        console.log("_id:" + bookInfo._id);
+                        browserHistory.push({
+                            pathname: '/read',
+                            state: {
+                                type:ConstData.READ_BOOK_START,
+                                bookName:bookInfo.title,
+                                bookId: bookInfo._id
+                            }
+                        });
                     }} className="start-read" target="_blank">开始阅读</a>
                 </div>
             </div>
@@ -117,7 +125,9 @@ export default class BDContent extends Component {
                             browserHistory.push({
                                 pathname: '/read',
                                 state: {
-                                    chapter: {chapterUrl:value.link,num:index,title:value.title,bookName:bookInfo.title},
+                                    type:ConstData.READ_BOOK_MIDDLE,
+                                    bookName:bookInfo.title,
+                                    chapter: {chapterUrl:value.link,num:index,title:value.title},
                                     bookId: bookInfo._id
                                 }
                             });
@@ -137,7 +147,9 @@ export default class BDContent extends Component {
                             browserHistory.push({
                                 pathname: '/read',
                                 state: {
-                                    chapter: {chapterUrl:value.link,num:index,title:value.title,bookName:bookInfo.title},
+                                    type:ConstData.READ_BOOK_MIDDLE,
+                                    bookName:bookInfo.title,
+                                    chapter: {chapterUrl:value.link,num:index,title:value.title},
                                     bookId: bookInfo._id
                                 }
                             });

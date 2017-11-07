@@ -1,0 +1,113 @@
+.page-search {
+  overflow: hidden;
+  width: 980px;
+  margin: 20px auto;
+  padding: 0 110px;
+  background: #fff;
+}
+
+.page-search .content {
+  float: left;
+  width: 660px;
+  height: 100%;
+}
+
+.page-search .content .title {
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  color: #999;
+  font-size: 16px;
+  border-bottom: 1px solid #aaa;
+  .c-red {
+    color: #d82626;
+  }
+  .search-val {
+    font-size: 20px;
+  }
+}
+
+.c-full-page {
+  clear: both;
+  display: inline-block;
+  margin: 15px 0;
+  color: #999;
+  font-size: 12px;
+  float: right;
+}
+
+.content .books-list {
+  padding: 0 0 80px;
+  .book {
+    position: relative;
+    float: left;
+    padding: 20px 15px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+  cursor: pointer;
+  outline: none !important;
+}
+
+.books-list .book .cover {
+  float: left;
+  width: 90px;
+  height: 120px;
+  border: 1px solid #ebebeb;
+  background: url(../images/img-bk.png) no-repeat center;
+  background-size: 100%;
+  box-shadow: 2px 4px 6px #bbb;
+}
+
+img {
+  max-width: 100%;
+  border: 0 none;
+}
+
+.books-list .book .right {
+  height: 120px;
+  margin-left: 105px;
+}
+
+.books-list .book .right .name {
+  height: 22px;
+  line-height: 22px;
+  color: #333 !important;
+}
+
+.books-list .book .right p {
+  height: 20px;
+  line-height: 20px;
+  color: #999;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.books-list .book .right p.author {
+  height: 28px;
+  line-height: 28px;
+}
+
+.books-list .book .right p.desc {
+  height: 40px;
+  margin: 5px 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.books-list .book .right p.popularity {
+  margin-top: 10px;
+}
+
+.c-red {
+  color: #d82626;
+}
+
+.split {
+  padding: 0 10px;
+}
