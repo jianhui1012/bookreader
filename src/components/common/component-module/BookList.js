@@ -56,7 +56,7 @@ export default class BookList extends Component {
     }
 
     getImageUrl(curUrl){
-        if(curUrl.indexOf("http:")!=-1){
+        if(curUrl.indexOf(api.IMG_BASE_URL)!=-1){
             return curUrl;
         }
         console.log(curUrl.indexOf("http:"));
