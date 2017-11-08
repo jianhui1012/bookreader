@@ -3,17 +3,37 @@
  */
 import React, {Component} from 'react'
 import {browserHistory} from 'react-router'
+import {is, fromJS} from 'immutable';
 import '../common/style/header.scss'
 
 class Header extends Component {
 
     static defaultProps = {
         initValue: "",
+        navData: [{text: "首 页", href: "/"}, {text: "精 选", href: "/selection"}, {text: "分 类", href: "/category"},
+            {text: "书 单", href: "/booklist"}, {text: "排行榜", href: "/rank"}, {text: "客户端", href: "/download"}]
     };
 
     constructor(props) {
         super(props);
-        this.state = {value: this.props.initValue};
+        this.state = {
+            value: this.props.initValue,
+            currentIndex: 0
+        };
+    }
+
+    componentDidMount() {
+        browserHistory.listen(location => {
+            let dataIndex = this.props.navData.findIndex(function (value, index, arr) {
+                return value.href == location.pathname;
+            });
+            //console.log(location.pathname+"--"+dataIndex);
+            this.setState({currentIndex: dataIndex});
+        })
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
     }
 
     onSearchText(event) {
@@ -21,6 +41,11 @@ class Header extends Component {
             value: event.target.value
         });
     }
+
+    getItemCssClasses(index) {
+        return index === this.state.currentIndex ? "nav-cell active" : "nav-cell";
+    }
+
 
     render() {
         return (<div>
@@ -68,12 +93,12 @@ class Header extends Component {
                             <input onChange={this.onSearchText.bind(this)} className="search-input"
                                    value={this.state.value} type="text"
                                    placeholder="搜索书名或作者"/>
-                            <a id="search-btn" className="search-btn" onClick={()=>{
+                            <a id="search-btn" className="search-btn" onClick={() => {
                                 //todo 跳转到search
                                 browserHistory.push({
                                     pathname: '/search',
                                     state: {
-                                        text:this.state.value
+                                        text: this.state.value
                                     }
                                 });
                             }}/>
@@ -83,29 +108,13 @@ class Header extends Component {
                 <div className="nav">
                     <div className="container">
                         <ul className="nav-cells">
-                            <li className="nav-cell "><a href="/">首 页</a></li>
-                            <li className="nav-cell "><a href="/selection/bzrt">精 选</a></li>
-                            <li className="nav-cell "><a href="/category">分 类</a></li>
-                            <li className="nav-cell "><a href="/booklist">书 单</a></li>
-                            <li className="nav-cell active"><a href="/rank">排行榜</a></li>
-                            <li id="nav-client" className="nav-cell">
-                                <a href="/download" target="_blank">客户端
-                                    <i className="icon icon-phone"/>
-                                </a>
-                                {/*<div className="qr-code">*/}
-                                {/*<h3 className="title">移动设备阅读</h3>*/}
-                                {/*<div className="block clearfix">*/}
-                                {/*<div className="sub-block">*/}
-                                {/*/!*<img src="/images/qrcode/fuwuhao.png" alt="追书神器服务号"/>*!/*/}
-                                {/*<p>服务号</p>*/}
-                                {/*</div>*/}
-                                {/*<div className="sub-block">*/}
-                                {/*/!*<img src="/images/qrcode/download.png" alt="追书神器APP"/>*!/*/}
-                                {/*<p>客户端</p>*/}
-                                {/*</div>*/}
-                                {/*</div>*/}
-                                {/*</div>*/}
-                            </li>
+                            {this.props.navData.map((value, index) => {
+                                return <li key={index} className={this.getItemCssClasses(index)}><a onClick={() => {
+                                    browserHistory.push({
+                                        pathname: value.href
+                                    });
+                                }}>{value.text}</a></li>;
+                            })}
                         </ul>
                     </div>
                 </div>
