@@ -9,7 +9,12 @@ export let discoverMenuList = () => {
     return dispatch => {
         return request.get(api.SELECTION_NODES, null,
             (data) => {
-                data.ok ? dispatch(getSelectionSuccess(data)) : null
+                if (data.ok) {
+                    let selectionData=data.data;
+                    dispatch(getSelectionSuccess(selectionData));
+                    //console.log(JSON.stringify(selectionData.nodes))
+                    dispatch(discoverBookDetail(selectionData.nodes[0]._id))
+                }
             },
             (error) => {
                 dispatch(getFailure(types.SELECTION_NODES_FAILURE, error))
@@ -20,7 +25,6 @@ let getSelectionSuccess = (home) => {
     return {
         type: types.SELECTION_NODES,
         nodes: home.nodes,
-        nodesState: false,
         autoComplete: []
     }
 };
@@ -28,7 +32,7 @@ let getSelectionSuccess = (home) => {
 let getSelectionLoading = (type, isLoading) => {
     return {
         type: type,
-        searchState: isLoading
+        selectionState: isLoading
     }
 };
 
@@ -37,7 +41,7 @@ export let discoverBookDetail = (id) => {
         dispatch(getSelectionLoading(types.SELECTION_NODES_BOOKS_LOADING, true))
         return request.get(api.SELECTION_NODES_BOOKS(id), null,
             (data) => {
-                data.ok ? dispatch(getSelectionDetailSuccess(data)) : null
+                data.ok ? dispatch(getSelectionDetailSuccess(data.data)) : null
             },
             (error) => {
                 dispatch(getFailure(types.SEARCH_SEARCH_BOOKS_FAILURE, error))
@@ -46,9 +50,15 @@ export let discoverBookDetail = (id) => {
 };
 
 let getSelectionDetailSuccess = (bookList) => {
+    //console.log(JSON.stringify(bookList));
+    let books = [];
+    bookList.forEach(function(item) {
+        books.push(item.book);
+    }, this);
     return {
         type: types.SELECTION_NODES_BOOKS,
-        bookList: bookList.data,
+        bookList:books ,
+        selectionState: false,
     }
 };
 

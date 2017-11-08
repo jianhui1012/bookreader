@@ -8,7 +8,7 @@ const initialState = {
     nodes: [],
     bookList: [],
     total: 0,
-    nodesState: false,
+    selectionState: false,
     error: "",
     type: types.SELECTION_NODES_BOOKS_LOADING,
     dataState: ConstData.DATA_EMPTY
@@ -18,14 +18,14 @@ export default function selection(state = initialState, action) {
     switch (action.type) {
         case types.SELECTION_NODES_BOOKS_LOADING:
             return Object.assign({}, state, {
-                nodesState: action.nodesState,
+                selectionState: action.selectionState,
                 dataState: ConstData.DATA_LOADING
             });
         case types.SELECTION_NODES_BOOKS:
             return Object.assign({}, state, {
                 bookList: action.bookList,
                 total: action.bookList.length,
-                nodesState: action.nodesState,
+                selectionState: action.selectionState,
             });
         case types.SELECTION_NODES_FAILURE:
             return Object.assign({}, state, {

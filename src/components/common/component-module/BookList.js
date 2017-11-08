@@ -55,6 +55,14 @@ export default class BookList extends Component {
         },200);
     }
 
+    getImageUrl(curUrl){
+        if(curUrl.indexOf("http:")!=-1){
+            return curUrl;
+        }
+        console.log(curUrl.indexOf("http:"));
+        return api.IMG_BASE_URL + curUrl;
+    }
+
     render() {
         return (<div className="books-list">
             {this.state.bookListData.map((value, index) => {
@@ -64,7 +72,7 @@ export default class BookList extends Component {
                         query: {bookId: value._id},
                     });
                 }} key={index} className="book" target="_blank">
-                    <img src={api.IMG_BASE_URL + value.cover}
+                    <img src={this.getImageUrl(value.cover)}
                            className="cover" ref={img => this.img = img} onError={(e) => {
                                this.img.src =require('../images/img-bk.png');
                            }}  />
