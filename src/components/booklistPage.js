@@ -11,58 +11,57 @@ import './common/style/rankingpage.scss'
 //加载antd
 import {BackTop} from 'antd';
 //加载组件
-import LeftMenu from './common/component-module/LeftMenu'
+import NormalLeftMenu from './common/component-module/NormalLeftMenu'
 import TopMenu from './common/component-module/TopMenu'
-import BookList from './common/component-module/BookList'
+import NewBookList from './common/component-module/NewBookList'
+import config from '../modules/config'
 
 //书单页面
 class BookListComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showMaleOther: false,
-            showFemaleOther: false,
-            currentId: "",
-            type: "",
-            currentRank: {}
+            title: config.bookListTypes[0].title
         }
     }
 
     componentDidMount() {
-        this.props.getRanking();
+        this.props.getDiscoverBookListTag();
     }
 
     renderStatus(status) {
-        //const {ranking} = this.props;
         let content = <div/>;
         if (!status) {
-            content = <BookList bookListData={this.props.ranking.chartsDetailBooks}/>;
+            content = <NewBookList bookListData={this.props.booklist.bookList}/>;
         } else {
             content = <div className="content">加载中...</div>;
         }
-        return <div className="content">
-            <div className="title">
-                {this.state.currentRank.title}
-            </div>
-            <TopMenu clickMenuItem={(index, item, id) => {
-
-            }} />
-            {content}
-        </div>;
+        return content;
     }
 
 
     render() {
-        const {ranking} = this.props;
+        const {booklist} = this.props;
         return <section className="page-ranking">
             <BackTop/>
             <section className="container">
                 {/*左侧菜单*/}
                 <div className="c-full-sideBar">
-                    <LeftMenu  />
+                    <NormalLeftMenu clickMenuItem={(index, item) => {
+                        //this.props.getDiscoverBookListDetail(item._id);
+                        this.setState({title: item.title})
+                    }} menuData={config.bookListTypes}/>
                 </div>
                 {/*内容显示区*/}
-                {this.renderStatus(ranking.isLoadingDetail)}
+                <div className="content">
+                    <div className="title">
+                        {this.state.title}
+                    </div>
+                    {/*<TopMenu clickMenuItem={(index, item, id) => {*/}
+
+                    {/*}}/>*/}
+                    {this.renderStatus(booklist.detailState)}
+                </div>
             </section>
         </section>;
     }

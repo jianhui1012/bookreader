@@ -12,6 +12,7 @@ export let discoverBookListTag = () => {
                 if (data.ok) {
                     let tagData = data.data;
                     dispatch(getBookListTagSuccess(tagData));
+                    dispatch(discoverBookListDetail("?duration=last-seven-days&sort=collectorCount"));
                 }
             },
             (error) => {
@@ -39,7 +40,7 @@ let getBookListLoading = (type, isLoading) => {
 export let discoverBookListDetail = (params) => {
     return dispatch => {
         dispatch(getBookListLoading(types.DISCOVER_BOOK_LIST_LOADING, true))
-        return request.get(api.DISCOVER_BOOK_LIST, params,
+        return request.get(api.DISCOVER_BOOK_LIST+params, null,
             (data) => {
                 data.ok ? dispatch(getBookListDetailSuccess(data)) : null
             },
