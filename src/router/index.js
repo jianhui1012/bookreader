@@ -9,50 +9,50 @@ import roots from "../components/roots";
 const home = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../components/homePage').default)
-    },'home')
+    }, 'home')
 };
 
 const category = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../components/homePage').default)
-    },'selection')
+    }, 'selection')
 };
 
 const selection = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../components/selectionPage').default)
-    },'selection')
+    }, 'selection')
 };
 
-const booklist = (location, cb) => {
+const bookList = (location, cb) => {
     require.ensure([], require => {
-        cb(null, require('../components/homePage').default)
-    },'selection')
+        cb(null, require('../components/booklistPage').default)
+    }, 'booklist')
 };
 
 //依赖 dependencies | 回调 callback | chunk名称 chunkName
 const ranking = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../components/rankingPage').default)
-    },'ranking')
+    }, 'ranking')
 };
 
 const book = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../components/bookPage').default)
-    },'book')
+    }, 'book')
 };
 
 const read = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../components/readPage').default)
-    },'read')
+    }, 'read')
 };
 
 const search = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../components/searchPage').default)
-    },'search')
+    }, 'search')
 };
 
 
@@ -60,14 +60,14 @@ const RouteConfig = (
     <Router history={browserHistory}>
         <Route path="/read" getComponent={read}/>
         <Route path="/" component={roots}>
-            <IndexRoute getComponent={home} />
+            <IndexRoute getComponent={home}/>
             <Route path="/home" getComponent={home}/>
-            <Route path="/selection" getComponent={selection}   />
-            <Route path="/category"   />
-            <Route path="/booklist"   />
-            <Route path="/rank" getComponent={ranking} />
-            <Route path="/book" getComponent={book} />
-            <Route path="/search" getComponent={search} />
+            <Route path="/selection" getComponent={selection}/>
+            <Route path="/category"/>
+            <Route path="/booklist" getComponent={bookList}/>
+            <Route path="/rank" getComponent={ranking}/>
+            <Route path="/book" getComponent={book}/>
+            <Route path="/search" getComponent={search}/>
         </Route>
     </Router>
 );
