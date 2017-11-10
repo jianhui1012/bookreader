@@ -32,7 +32,7 @@ const bookList = (location, cb) => {
 
 const booklistDetail = (location, cb) => {
     require.ensure([], require => {
-        cb(null, require('../components/booklistPage').default)
+        cb(null, require('../components/booklistDetailPage').default)
     }, 'booklistDetail')
 };
 
@@ -74,6 +74,7 @@ const RouteConfig = (
             <Route path="/rank" getComponent={ranking}/>
             <Route path="/book" getComponent={book}/>
             <Route path="/search" getComponent={search}/>
+            <Route path="/booklistDetail" getComponent={booklistDetail}/>
         </Route>
     </Router>
 );

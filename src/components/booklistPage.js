@@ -21,7 +21,9 @@ class BookListComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: config.bookListTypes[0].title
+            title: config.bookListTypes[0].title,
+            curIndex: 0,
+            params: "?duration=last-seven-days&sort=collectorCount"
         }
     }
 
@@ -39,6 +41,30 @@ class BookListComponent extends Component {
         return content;
     }
 
+    getBookListDetail(index) {
+        let params = "";
+        if (index === 0) {
+            params = "?duration=last-seven-days&sort=collectorCount";
+        } else if (index === 1) {
+            params = "?duration=all&sort=created";
+        } else if (index === 2) {
+            params = "?duration=all&sort=collectorCount";
+        }
+        this.props.getDiscoverBookListDetail(params);
+        return params;
+    }
+
+    getSubClickMenuItem(index, item) {
+        let params = "";
+        if (item === "男性") {
+            params = this.state.params + "&gender=male";
+        } else if (index === "女性") {
+            params = this.state.params + "&gender=female";
+        } else {
+            params = this.state.params + "&tag=" + item;
+        }
+        this.props.getDiscoverBookListDetail(params);
+    }
 
     render() {
         const {booklist} = this.props;
@@ -48,8 +74,8 @@ class BookListComponent extends Component {
                 {/*左侧菜单*/}
                 <div className="c-full-sideBar">
                     <NormalLeftMenu clickMenuItem={(index, item) => {
-                        //this.props.getDiscoverBookListDetail(item._id);
-                        this.setState({title: item.title})
+                        let params = this.getBookListDetail(index);
+                        this.setState({title: item.title, curIndex: index, params: params})
                     }} menuData={config.bookListTypes}/>
                 </div>
                 {/*内容显示区*/}
@@ -57,7 +83,10 @@ class BookListComponent extends Component {
                     <div className="title">
                         {this.state.title}
                     </div>
-                    <NormalTopMenu tagsData={this.props.booklist.tags} clickMenuItem={(index, item) => {
+                    <NormalTopMenu AllMenuItem={(index, item) => {
+                        this.getBookListDetail(this.state.curIndex);
+                    }} tagsData={this.props.booklist.tags} subClickMenuItem={(index, item) => {
+                        this.getSubClickMenuItem(index, item);
                     }}/>
                     {this.renderStatus(booklist.detailState)}
                 </div>

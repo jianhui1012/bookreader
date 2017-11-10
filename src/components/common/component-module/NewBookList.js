@@ -59,8 +59,8 @@ export default class NewBookList extends Component {
             {this.state.bookListData.map((value, index) => {
                 return <a onClick={() => {
                     browserHistory.push({
-                        pathname: '/book',
-                        query: {bookId: value._id},
+                        pathname: '/booklistDetail',
+                        state: {bookListId: value._id},
                     });
                 }} key={index} className="book" target="_blank">
                     <img src={this.getImageUrl(value.cover)}

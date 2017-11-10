@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react'
 import {is, fromJS} from 'immutable';
+import {browserHistory} from 'react-router';
 import api from '../../../modules/api/api'
 
 export default class BDRightMenu extends Component {
@@ -40,6 +41,10 @@ export default class BDRightMenu extends Component {
                             {recommendListData.map((value, index) => {
                                 return <li key={index} className="clearfix">
                                     <a onClick={() => {
+                                        browserHistory.push({
+                                            pathname: '/booklistDetail',
+                                            state: {bookListId: value.id},
+                                        });
                                     }}>
                                         <img src={api.IMG_BASE_URL + value.cover}
                                              alt={value.title}/>

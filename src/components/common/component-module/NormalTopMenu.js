@@ -10,8 +10,11 @@ export default class NormalTopMenu extends Component {
         title: "请输入标题",
         tagsData: [],
         defaultIndex: 0,
-        clickMenuItem: () => {
+        AllMenuItem: () => {
             console.log("clickMenuItem");
+        },
+        subClickMenuItem: () => {
+            console.log("subClickMenuItem");
         }
     };
 
@@ -45,6 +48,11 @@ export default class NormalTopMenu extends Component {
     }
 
     _onPress(index, value) {
+        if (index === this.state.currentIndex)
+            return;
+        if (value.name === "全部") {
+            this.props.AllMenuItem(index, value);
+        }
         this.setState({
             currentIndex: index,
             tags: value.tags
@@ -52,11 +60,11 @@ export default class NormalTopMenu extends Component {
     }
 
     _onSubPress(index, value) {
-        if (!this.props.clickMenuItem)
+        if (index === this.state.currentSubIndex)
             return;
-        this.props.clickMenuItem(index, value);
+        this.props.subClickMenuItem(index, value);
         this.setState({
-            currentSubIndex: index,
+            currentSubIndex: index
         });
     }
 
@@ -71,15 +79,15 @@ export default class NormalTopMenu extends Component {
                                      className={this.getItemCssClasses(index)}>{value.name}</span>;
                     })}
                 </div>
-                {this.state.currentIndex == 0 ? <div/> : <div className="sub-sort-cells">
-                        <p style={{display: "block"}}>
-                            <a>具体类型：</a>
-                            {this.state.tags.map((value, index) => {
-                                return <a key={index} className={this.getSubItemCssClasses(index)}
-                                          onClick={this._onSubPress.bind(this, index, value)}>{value}</a>;
-                            })}
-                        </p>
-                    </div>}
+                {this.state.currentIndex === 0 ? <div/> : <div className="sub-sort-cells">
+                    <p style={{display: "block"}}>
+                        <a>具体类型：</a>
+                        {this.state.tags.map((value, index) => {
+                            return <a key={index} className={this.getSubItemCssClasses(index)}
+                                      onClick={this._onSubPress.bind(this, index, value)}>{value}</a>;
+                        })}
+                    </p>
+                </div>}
             </div>
         </div>);
     }
