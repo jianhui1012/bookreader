@@ -30,6 +30,12 @@ const bookList = (location, cb) => {
     }, 'booklist')
 };
 
+const booklistDetail = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/booklistPage').default)
+    }, 'booklistDetail')
+};
+
 //依赖 dependencies | 回调 callback | chunk名称 chunkName
 const ranking = (location, cb) => {
     require.ensure([], require => {

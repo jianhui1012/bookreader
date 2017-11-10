@@ -23,7 +23,8 @@ export let discoverBookListTag = () => {
 
 let getBookListTagSuccess = (data) => {
     let gender = {"name": "性别", "tags": ["男性", "女性"]};
-    data.push(gender);
+    data.unshift(gender);
+    data.unshift({"name": "全部", "tags": []});
     return {
         type: types.DISCOVER_BOOK_LIST_TAG,
         tags: data

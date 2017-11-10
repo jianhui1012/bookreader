@@ -12,7 +12,7 @@ import './common/style/rankingpage.scss'
 import {BackTop} from 'antd';
 //加载组件
 import NormalLeftMenu from './common/component-module/NormalLeftMenu'
-import TopMenu from './common/component-module/TopMenu'
+import NormalTopMenu from './common/component-module/NormalTopMenu'
 import NewBookList from './common/component-module/NewBookList'
 import config from '../modules/config'
 
@@ -57,9 +57,8 @@ class BookListComponent extends Component {
                     <div className="title">
                         {this.state.title}
                     </div>
-                    {/*<TopMenu clickMenuItem={(index, item, id) => {*/}
-
-                    {/*}}/>*/}
+                    <NormalTopMenu tagsData={this.props.booklist.tags} clickMenuItem={(index, item) => {
+                    }}/>
                     {this.renderStatus(booklist.detailState)}
                 </div>
             </section>

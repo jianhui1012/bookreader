@@ -45,6 +45,21 @@ section {
   margin-bottom: 10px;
 }
 
+.c-full-menu .sub-sort-cells {
+  padding: 0 15px;
+  p {
+    line-height: 30px;
+    padding: 15px;
+    font-size: 14px;
+    background: #f4f2ef;
+    .sub-sort-cell {
+      display: inline-block;
+      height: 30px;
+      padding: 0 10px;
+    }
+  }
+}
+
 .c-full-menu .more-cells .more-cell, .c-full-menu .more-cells .sort-cell, .c-full-menu .sort-cells .more-cell, .c-full-menu .sort-cells .sort-cell {
   display: inline-block;
   height: 30px;

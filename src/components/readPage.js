@@ -25,6 +25,7 @@ class Read extends Component {
             leftToolBarTop: 40,
             rightToolbarBottom: 0,
         };
+        this.newHandleScroll=this.handleScroll.bind(this);
     }
 
     componentDidMount() {
@@ -47,11 +48,11 @@ class Read extends Component {
             //加载章节列表
             this.props.getReadBookChapterList(this.bookId);
         }
-        window.addEventListener('scroll', this.handleScroll.bind(this));
+        window.addEventListener('scroll', this.newHandleScroll);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll.bind(this));
+        window.removeEventListener('scroll', this.newHandleScroll);
     }
 
     handleScroll(e) {

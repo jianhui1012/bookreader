@@ -23,13 +23,18 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        browserHistory.listen(location => {
+        this.unlisten = browserHistory.listen(location => {
             let dataIndex = this.props.navData.findIndex(function (value, index, arr) {
                 return value.href == location.pathname;
             });
             //console.log(location.pathname+"--"+dataIndex);
             this.setState({currentIndex: dataIndex});
         })
+    }
+
+    componentWillUnmount() {
+        //注销路由监听
+        this.unlisten();
     }
 
     shouldComponentUpdate(nextProps, nextState) {
