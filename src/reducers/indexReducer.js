@@ -14,9 +14,10 @@ import search from './searchReducer'
 import selection from './selectionReducer'
 import booklist from './booklistReducer'
 import booklistDetail from './booklistDetailReducer'
+import category from './categoryReducer'
 
 const rootReducer = combineReducers({
-    ranking, book, read, search,selection,booklist,booklistDetail
+    ranking, book, read, search,selection,booklist,booklistDetail,category
 });
 
 export default rootReducer

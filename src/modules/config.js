@@ -83,5 +83,14 @@ module.exports = {
     ],
     bookListTypes: [
         {title: "本周最热"}, {title: "最新发布"}, {title: "最多收藏"}
+    ],
+    bookListCategory: [
+        {title: "男生"}, {title: "女生"}, {title: "出版物"}
+    ],
+    subCategory: [
+        {name: '热门', code: 'hot',tags:[]},
+        {name: '新书', code: 'new',tags:[]},
+        {name: '好评', code: 'reputation',tags:[]},
+        {name: '完结', code: 'over',tags:[]},
     ]
-}
+};

@@ -14,8 +14,8 @@ const home = (location, cb) => {
 
 const category = (location, cb) => {
     require.ensure([], require => {
-        cb(null, require('../components/homePage').default)
-    }, 'selection')
+        cb(null, require('../components/categoryPage').default)
+    }, 'category')
 };
 
 const selection = (location, cb) => {
@@ -69,7 +69,7 @@ const RouteConfig = (
             <IndexRoute getComponent={home}/>
             <Route path="/home" getComponent={home}/>
             <Route path="/selection" getComponent={selection}/>
-            <Route path="/category"/>
+            <Route path="/category"  getComponent={category}/>
             <Route path="/booklist" getComponent={bookList}/>
             <Route path="/rank" getComponent={ranking}/>
             <Route path="/book" getComponent={book}/>
