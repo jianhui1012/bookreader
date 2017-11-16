@@ -21,6 +21,7 @@ export let discoverCategoryList = () => {
 
 let getCategoryListSuccess = (data) => {
     // data contain three types female,male,press
+
     return {
         type: types.DISCOVER_CATEGORY_LIST,
         tags: data

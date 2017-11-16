@@ -6,10 +6,12 @@
 const API_BASE_URL = './api';//http://api.zhuishushenqi.com'
 const IMG_BASE_URL = 'http://statics.zhuishushenqi.com';
 const API_CHAPTER_URL = './chapter/';//http://chapter2.zhuishushenqi.com/chapter/
+const WEB_BASE_URL='./spread';
 
 module.exports = {
     API_BASE_URL: API_BASE_URL,
     IMG_BASE_URL: IMG_BASE_URL,
+    WEB_BASE_URL:WEB_BASE_URL,
 
     //GET 首次进入APP，选择性别后，获取推荐列表 url?gender='male'
     BOOK_RECOMMEND: API_BASE_URL + '/book/recommend',
