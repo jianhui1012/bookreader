@@ -9,6 +9,26 @@
   height: 100%;
 }
 
+.page-home .icon {
+  float: left;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.page-home .title .more {
+  float: right;
+  margin-right: 15px;
+  color: #999;
+  font-size: 12px;
+  font-weight: 200;
+}
+
+.page-home .title  .name {
+  font-size: 18px;
+  color: #333;
+  font-weight: 700;
+}
+
 .page-home {
   display: inline-block;
   width: 100%;
@@ -19,11 +39,70 @@
     margin: 0 auto;
   }
 
-  .content-right {
-    display: inline-block;
-    width: 940px;
-    margin-left: 10px;
+  .content {
+    margin-bottom: 15px;
+
+    .content-left {
+      float: left;
+      width: 250px;
+
+      .category .category-block {
+        padding: 0 15px;
+        margin-bottom: 10px;
+        border: 1px solid #eee;
+        background: #fff;
+
+        .title {
+          width: 100%;
+          height: 50px;
+          line-height: 50px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .category-list {
+          display: inline-block;
+          width: 100%;
+          padding: 12px 0;
+
+          a {
+            float: left;
+            display: block;
+            width: 33.3333%;
+            line-height: 18px;
+            padding: 2px 0;
+            .name {
+              font-size: 13px;
+            }
+            .bookCount {
+              color: #999;
+              font-size: 12px;
+            }
+          }
+
+        }
+      }
+
+      .ranking .ranking-block {
+        padding: 0 15px;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        background: #fff;
+        .title {
+          width: 100%;
+          height: 50px;
+          line-height: 50px;
+          border-bottom: 1px solid #eee;
+        }
+      }
+    }
+
+    .content-right {
+      display: inline-block;
+      width: 940px;
+      margin-left: 10px;
+    }
   }
+
   .classify-list {
     width: 240px;
     height: 420px;

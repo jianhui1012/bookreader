@@ -4,44 +4,76 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Carousel} from 'antd';
-import 'antd'
+import api from '../modules/api/api'
 import  './common/style/home.scss'
 
-function SampleNextArrow(props) {
-    const {className, style, onClick} = props
-    return (
-        <div
-            className={className}
-            style={{
-                ...style, display: 'block',height: 20,
-                width: 20,
-                lineHeight: 1,
-                fontSize: 20,
-                cursor: 'pointer',
-                color: '#00558B',
-            }}
-            onClick={onClick}
-        ></div>
-    );
+
+function CategoryList(props) {
+    const {className, style, title, categoryList} = props;
+    return (<div style={{...style}} className="category-block">
+        <div className="title">
+            <i className="icon icon-man"/>
+            <span className="name">{title}</span>
+            <a href="/category?gender=male" className="more">更多<span className="arrow-more"/></a>
+        </div>
+        <div className="category-list">
+            {categoryList.map((value, index) => {
+                return <a key={index} onClick={() => {
+                }}>
+                    <p className="name">{value.name}</p>
+                    <p className="bookCount">{value.bookCount}</p>
+                </a>;
+            })}
+        </div>
+    </div>);
 }
 
-function SamplePrevArrow(props) {
-    const {className, style, onClick} = props
-    return (
-        <div
-            className={className}
-            style={{
-                ...style, display: 'block',height: 20,
-                width: 20,
-                lineHeight: 1,
-                fontSize: 20,
-                cursor: 'pointer',
-                color: '#00558B',
-            }}
-            onClick={onClick}
-        ></div>
-    );
+function getImageUrl(curUrl){
+    if(curUrl.indexOf(api.IMG_BASE_URL)!=-1){
+        return curUrl;
+    }
+    return api.IMG_BASE_URL + curUrl;
 }
+
+function RankList(props) {
+    const {className, style, title, rankList} = props;
+    return (<div className="ranking">
+        <div className="ranking-block">
+            <div className="title">
+                <i className="icon icon-ranking"/>
+                <span className="name">{title}</span>
+                <a  className="more">全部<span className="arrow-more"/></a>
+            </div>
+            <div className="ranking-nav">
+                <span id="ranking-male" className="active">男生榜</span>
+                <span className="verticaleLine">|</span>
+                <span id="ranking-female">女生榜</span>
+            </div>
+            <div id="ranking-list" className="ranking-list">
+                <div className="male-list">
+                    {rankList.map((value,index)=>{
+                        return   <a key={index}  onClick={()=>{
+                        }}  className="first">
+                            <div className="num-index clearfix" style={{width: 70}}>
+                                <span className="No No1">{index+1}</span>
+                                <img src={getImageUrl(value.cover)}
+                                     className="cover" ref={img => this.img = img} onError={(e) => {
+                                    this.img.src =require('./common/images/img-bk.png');
+                                }}  />
+                            </div>
+                            <div className="text-block">
+                                <p className="name">{value.title}</p>
+                                <p className="latelyFollower"><span>{value.title}</span>{value.title}</p>
+                            </div>
+                        </a>;
+                    })}
+                </div>
+            </div>
+        </div>
+    </div>);
+
+}
+
 
 // 主页
 class Home extends Component {
@@ -51,38 +83,34 @@ class Home extends Component {
 
     render() {
         return <div className="page-home">
-            <div className="container">
-                {/**/}
-                <div className="classify-list fl">
-                    <ul>
-                        <li>xx</li>
-                        <li>xx</li>
-                        <li>xx</li>
-                    </ul>
+            <section className="container content">
+                <div className="content-left">
+                    <div className="category">
+                        <CategoryList title="男生" categoryList={[]}/>
+                        <CategoryList title="女生" categoryList={[]}/>
+                        <CategoryList title="出版" categoryList={[]}/>
+                    </div>
+
                 </div>
                 <div className="content-right">
-                    <Carousel accessibility arrows centerMode infinite autoplay className="carousel-list f1"
-                              nextArrow={<SampleNextArrow />} prevArrow={<SamplePrevArrow />}>
-                        <img src="http://statics.zhuishushenqi.com/recommendPage/151028093581349"/>
-                        <img src="http://statics.zhuishushenqi.com/recommendPage/151028086998468"/>
-                        <img src="http://statics.zhuishushenqi.com/recommendPage/151028088465985"/>
-                    </Carousel>
+                    {/*<Carousel accessibility arrows centerMode infinite autoplay className="carousel-list f1"*/}
+                    {/*nextArrow={<SampleNextArrow />} prevArrow={<SamplePrevArrow />}>*/}
+                    {/*<img src="http://statics.zhuishushenqi.com/recommendPage/151028093581349"/>*/}
+                    {/*<img src="http://statics.zhuishushenqi.com/recommendPage/151028086998468"/>*/}
+                    {/*<img src="http://statics.zhuishushenqi.com/recommendPage/151028088465985"/>*/}
+                    {/*</Carousel>*/}
                 </div>
-                <div className="fl">
-                </div>
-                {/**/}
-                <div></div>
-            </div>
+            </section>
+            <section className="container"></section>
+            <section className="container"></section>
         </div>
             ;
     }
 }
 
-const styles = {};
-
 const mapStateToProps = (store) => {
     const {home} = store;
-    return null;
+    return store;
 };
 
 const mapDispatchToProps = (dispatch) => ({});
