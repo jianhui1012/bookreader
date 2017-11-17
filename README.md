@@ -47,6 +47,22 @@ npm run dev
 
 ## 部分截图
 
+#### 首页
+
+<img src="https://github.com/jianhui1012/bookreader/blob/master/screenshots/home.png" />
+
+#### 精选
+
+<img src="https://github.com/jianhui1012/bookreader/blob/master/screenshots/selection.png" />
+
+#### 分类
+
+<img src="https://github.com/jianhui1012/bookreader/blob/master/screenshots/category.png" />
+
+#### 书单
+
+<img src="https://github.com/jianhui1012/bookreader/blob/master/screenshots/booklist.png" />
+
 #### 排行榜
 
 <img src="https://github.com/jianhui1012/bookreader/blob/master/screenshots/rank.png" />
@@ -59,4 +75,7 @@ npm run dev
 
 <img src="https://github.com/jianhui1012/bookreader/blob/master/screenshots/read.png" />
 
-# License
+#### 搜索
+
+<img src="https://github.com/jianhui1012/bookreader/blob/master/screenshots/search.png" />
+
