@@ -5,6 +5,22 @@ import * as types from '../modules/constants/actionTypes'
 import request from '../modules/api/httpUtil'
 import api from '../modules/api/api'
 
+
+export let discoverSingleMenuList = () => {
+    return dispatch => {
+        return request.get(api.SELECTION_NODES, null,
+            (data) => {
+                if (data.ok) {
+                    let selectionData=data.data;
+                    dispatch(getSelectionSuccess(selectionData));
+                }
+            },
+            (error) => {
+                dispatch(getFailure(types.SELECTION_NODES_FAILURE, error))
+            })
+    }
+};
+
 export let discoverMenuList = () => {
     return dispatch => {
         return request.get(api.SELECTION_NODES, null,

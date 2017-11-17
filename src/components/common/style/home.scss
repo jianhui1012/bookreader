@@ -9,6 +9,31 @@
   height: 100%;
 }
 
+.ant-carousel .lick-dots button{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 7px 5px 0;
+  border: 0 none;
+  border-radius: 50%;
+  background: #333;
+  opacity: .6;
+  cursor: pointer;
+}
+
+.ant-carousel .slick-dots .slick-active button{
+  background: #d26050;
+  opacity: 1;
+  width: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+  cursor: pointer;
+  outline: none!important;
+}
+
 .page-home .icon {
   float: left;
   height: 50px;
@@ -23,10 +48,28 @@
   font-weight: 200;
 }
 
-.page-home .title  .name {
+.page-home .title .name {
   font-size: 18px;
   color: #333;
   font-weight: 700;
+}
+
+.page-home .hot-items {
+  width: 100%;
+  height: 130px;
+  margin: 10px 0;
+ .hot-item-first {
+    margin-right: 15px;
+  }
+ .hot-item {
+    float: left;
+    width: 390px;
+    height: 100%;
+    background: #f4f2ef;
+  }
+  .hot-item-last {
+    margin-left: 15px;
+  }
 }
 
 .page-home {
@@ -99,7 +142,7 @@
           height: 30px;
           line-height: 30px;
           text-align: center;
-           span {
+          span {
             font-size: 16px;
             color: #999;
             cursor: pointer;
@@ -126,24 +169,24 @@
             height: 40px;
             line-height: 20px;
             margin-bottom: 13px;
-          }
-          a .text-block {
-            float: left;
-            width: 88%;
-            white-space: nowrap;
-            .name {
-              font-size: 14px;
-              color: #666;
-              overflow: hidden;
-              text-overflow: ellipsis;
+            .text-block {
+              width: 88%;
+              white-space: nowrap;
+              .name {
+                font-size: 14px;
+                color: #666;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              .latelyFollower {
+                line-height: 24px;
+                color: #999;
+                font-size: 12px;
+              }
             }
-            .latelyFollower {
-              line-height: 24px;
-              color: #999;
-              font-size: 12px;
-            }
           }
-           a.first {
+
+          a.first {
             height: auto;
           }
           a .num-index {
@@ -151,8 +194,15 @@
             position: relative;
             margin-right: 10px;
             font-size: 12px;
-
-              .No1 {
+            .No {
+              float: left;
+              width: 16px;
+              height: 16px;
+              line-height: 16px;
+              margin-top: 2px;
+              text-align: center;
+            }
+            .No1 {
               position: absolute;
               margin: 0;
               background: #d82626;
@@ -172,6 +222,66 @@
       display: inline-block;
       width: 940px;
       margin-left: 10px;
+      .banner {
+        position: relative;
+        width: 100%;
+        height: 240px;
+      }
+       .recommend {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        margin-top: 20px;  margin-bottom: 40px;
+        background: #fff;
+          .title {
+           height: 60px;
+           line-height: 55px;
+           border-bottom: 1px solid #eee;
+            .name {
+              position: relative;
+              display: inline-block;
+              width: 130px;
+              height: 55px;
+              line-height: 50px;
+              color: #333;
+              font-size: 18px;
+              font-weight: 700;
+              text-align: center;
+            }
+         }
+          .title:before {
+           content: '';
+           display: block;
+           width: 100%;
+           height: 5px;
+           background: #cab389;
+         }
+          .title .name:after {
+           content: '';
+           position: absolute;
+           left: 0;
+           bottom: 0;
+           width: 100%;
+           height: 5px;
+           background: #cab389;
+         }
+         .books-list  {
+           overflow: hidden;
+           width: 100%;
+           .book {
+             width: 405px;
+             padding: 15px 25px;
+             .right .tag-serial {
+               padding: 0 5px;
+               color: #fff;
+               font-size: 12px;
+               border-radius: 2px;
+               background: #d82626;
+             }
+           }
+
+         }
+      }
     }
   }
 

@@ -12,6 +12,10 @@ const proxy = [{
     path: '/chapter/*',
     target: 'http://chapter2.zhuishushenqi.com',
     changeOrigin: true
+},{
+    path: '/spread',
+    target: 'http://www.zhuishushenqi.com',
+    changeOrigin: true
 }];
 const server = new WebpackDevServer(webpack(config), {
 	publicPath: config.output.publicPath,

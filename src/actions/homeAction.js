@@ -9,7 +9,7 @@ export let getSpread = () => {
     return dispatch => {
         return request.get(api.WEB_BASE_URL, null,
             (data) => {
-                data.ok ? dispatch(getSpreadSuccess(data)) : null
+                data.ok ? dispatch(getSpreadSuccess(data.data)) : null
             },
             (error) => {
                 //todo send error
@@ -17,6 +17,7 @@ export let getSpread = () => {
     }
 };
 let getSpreadSuccess = (spreads) => {
+    //console.log(spreads);
     return {
         type: types.HOME_SPREAD,
         spreadData: spreads,

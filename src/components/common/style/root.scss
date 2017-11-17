@@ -27,3 +27,64 @@ img {
   width: 1200px;
   margin: 0 auto;
 }
+
+.books-list .book {
+  position: relative;
+  float: left;
+  padding: 20px 15px;
+}
+
+.books-list .book .cover {
+  float: left;
+  width: 90px;
+  height: 120px;
+  border: 1px solid #ebebeb;
+  background: url(../images/img-bk.png) no-repeat center;
+  background-size: 100%;
+  box-shadow: 2px 4px 6px #bbb;
+}
+
+.books-list .book .right {
+  height: 120px;
+  margin-left: 105px;
+}
+
+.books-list .book .right .name {
+  height: 22px;
+  line-height: 22px;
+  color: #333 !important;
+}
+
+.books-list .book .right p {
+  height: 20px;
+  line-height: 20px;
+  color: #999;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.books-list .book .right p.author {
+  height: 28px;
+  line-height: 28px;
+}
+
+.books-list .book .right p.desc {
+  height: 40px;
+  margin: 5px 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.books-list .book .right p.popularity {
+  margin-top: 10px;
+}
+
+.c-red {
+  color: #d82626;
+}
+
+.split {
+  padding: 0 10px;
+}
