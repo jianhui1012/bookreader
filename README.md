@@ -8,7 +8,7 @@ __注：此项目纯属个人学习，不用于任何商业用途。__
 
 ## 技术栈
 
-react + redux + react-router + express + webpack 
+react + redux + react-router + antd + webpack 
 
 
 ## 项目运行
@@ -28,7 +28,7 @@ npm run dev
 
 ## 目标功能
 
-- [x] 排行榜分类、分页显示 -- 完成
+- [x] 排行榜 -- 完成
 - [x] 书籍详情 -- 完成
 - [x] 阅读书籍 -- 完成
 - [x] 书单推荐 -- 完成

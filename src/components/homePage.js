@@ -66,8 +66,12 @@ function RankList(props) {
                 <div className="male-list">
                     {rankList.map((value, index) => {
                         if (index >= 10)
-                            return
+                            return;
                         return <a key={index} onClick={() => {
+                            browserHistory.push({
+                                pathname: '/book',
+                                query: {bookId: value._id},
+                            });
                         }} className="first">
                             <div className="num-index clearfix" style={{width: 70}}>
                                 <span className="No No1">{index + 1}</span>
@@ -98,7 +102,9 @@ function RecommandList(props) {
         <div className="books-list">
             {recommandList.map((value, index) => {
                 let book = value.book;
-                return <a key={index} className="book">
+                return <a key={index} className="book" onClick={()=>{
+
+                }}>
                     <img src={book.cover} className="cover"/>
                     <div className="right">
                         <h4 className="name">
@@ -164,19 +170,19 @@ class Home extends Component {
                                 })}
                             </Carousel> : null}
                     </div>
-                    {home.nodes.length==0?null:<RecommandList title={home.nodes[0].title} recommandList={home.nodes[0].books}/>}
-                    {home.nodes.length==0?null:<RecommandList title={home.nodes[1].title} recommandList={home.nodes[1].books}/>}
-                    {home.nodes.length==0?null:<RecommandList title={home.nodes[2].title} recommandList={home.nodes[2].books}/>}
-                    {home.nodes.length==0?null:<RecommandList title={home.nodes[3].title} recommandList={home.nodes[3].books}/>}
+                    {home.nodes.length===0?null:<RecommandList title={home.nodes[0].title} recommandList={home.nodes[0].books}/>}
+                    {home.nodes.length===0?null:<RecommandList title={home.nodes[1].title} recommandList={home.nodes[1].books}/>}
+                    {home.nodes.length===0?null:<RecommandList title={home.nodes[2].title} recommandList={home.nodes[2].books}/>}
+                    {home.nodes.length===0?null:<RecommandList title={home.nodes[3].title} recommandList={home.nodes[3].books}/>}
                 </div>
             </section>
             <section className="container">
                 <div className="hot-items">
                     {home.spreadData.length > 0 ?home.spreadData.map((value,index)=>{
                         let hotItemClass="hot-item hot-item-first";
-                        if(index==1){
+                        if(index===1){
                             hotItemClass="hot-item";
-                        }else  if(index==2){
+                        }else  if(index===2){
                             hotItemClass="hot-item hot-item-last";
                         }
                         return    <a key={index}  onClick={()=>{

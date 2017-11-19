@@ -84,9 +84,9 @@ class Category extends Component {
                     {category.tagsV2.length>0?<NormalTopMenu defaultIndex={-1} title={"作品类型"} tagsData={category.tagsV2[this.state.curIndex]} subClickMenuItem={(index, item) => {
                         this.getSubClickMenuItem(index, item);
                     }}/>:<div/>}
-                    {this.state.curIndex==2?<div/>:<NormalTopMenu tagsData={config.subCategory} title={"更多筛选"} subClickMenuItem={(index, item) => {
-                        let params = "";
-                        //this.props.getCategoryBooks(params);
+                    {this.state.curIndex===2?null:<NormalTopMenu tagsData={config.subCategory} title={"更多筛选"} subClickMenuItem={(index, item) => {
+                        let params =   this.state.params+"&type="+item.code;
+                        this.props.getCategoryBooks(params);
                     }}/>}
                     {this.renderStatus(category.booksState)}
                 </div>

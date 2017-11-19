@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {browserHistory} from 'react-router';
 import  * as ConstData from '../modules/constants/ConstData'
 import {readBookChapterList, readBookChapterDetail, getReadBookChapterListAndStartRead} from '../actions/readAction'
-import {message} from 'antd';
+import {message, Modal} from 'antd';
 import './common/style/readpage.scss'
 
 //阅读页面
@@ -24,8 +24,14 @@ class Read extends Component {
             title: "",
             leftToolBarTop: 40,
             rightToolbarBottom: 0,
+            visible: false
         };
-        this.newHandleScroll=this.handleScroll.bind(this);
+        this.showModal = () => {
+            this.setState({
+                visible: true,
+            });
+        };
+        this.newHandleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +40,7 @@ class Read extends Component {
         }
         //从第一章开始
         if (this.type == ConstData.READ_BOOK_START) {
-            console.log("READ_BOOK_START:"+this.bookId)
+            console.log("READ_BOOK_START:" + this.bookId)
             this.chapterIndex = 0;
             //加载章节列表并设置第一章节
             this.props.getReadBookChapterListAndStartRead(this.bookId);
@@ -105,7 +111,7 @@ class Read extends Component {
                                 });
                             }
                         }} title="上一章"/>
-                        <a className="list" title="章节目录"/>
+                        <a className="list" title="章节目录" onClick={this.showModal}/>
                         <a className="next" onClick={() => {
                             if (this.chapterIndex == this.props.read.totalChapter - 1) {
                                 message.warning('Dear,往后没有章节了！！！');
@@ -137,8 +143,38 @@ class Read extends Component {
     }
 
     render() {
+        const {read} = this.props;
         return <div className="page-reader-wraper">
             {this.renderContentByDataState()}
+            <Modal
+                title="章节目录"
+                footer={null}
+                closable={false}
+                bodyStyle={{maxHeight: 350, overflow: 'auto'}}
+                visible={this.state.visible}>
+                {read.bookChapterList.length > 0 ? read.bookChapterList.map((value, index) => {
+                    let readable;
+                    if (value.unreadble) {
+                        //todo unreadable
+                        readable = <span>lock</span>;
+                    } else {
+                        //todo readable
+                        readable = null;
+                    }
+                    return <a key={index} onClick={() => {
+                        this.chapterIndex = index;
+                        this.props.getReadBookChapterDetail(value.link, index, value.title);
+                        this.setState({
+                            title: value.title
+                        });
+                        this.setState({
+                            visible: false,
+                        });
+                    }}><p style={{margin: "10px 0px"}}>{value.title}{readable}</p>
+                        <div style={{height: 1, backgroundColor: '#C2C2C2'}}/>
+                    </a>;
+                }) : null}
+            </Modal>
         </div>;
     }
 }
