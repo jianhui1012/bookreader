@@ -103,7 +103,10 @@ function RecommandList(props) {
             {recommandList.map((value, index) => {
                 let book = value.book;
                 return <a key={index} className="book" onClick={()=>{
-
+                    browserHistory.push({
+                        pathname: '/book',
+                        query: {bookId: book._id},
+                    });
                 }}>
                     <img src={book.cover} className="cover"/>
                     <div className="right">

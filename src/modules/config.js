@@ -85,7 +85,7 @@ module.exports = {
         {title: "本周最热"}, {title: "最新发布"}, {title: "最多收藏"}
     ],
     bookListCategory: [
-        {title: "男生"}, {title: "女生"}, {title: "出版物"}
+        {title: "男生", code: 'male'}, {title: "女生",code: 'female'}, {title: "出版物"}
     ],
     subCategory: [
         {name: '热门', code: 'hot',tags:[]},

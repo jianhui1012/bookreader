@@ -15,14 +15,16 @@ export default class NormalTopMenu extends Component {
         },
         subClickMenuItem: () => {
             console.log("subClickMenuItem");
+        }, ClickMenuItem: () => {
         }
+
     };
 
     constructor(props) {
         super(props);
         this.tagsData = this.props.tagsData;
         this.state = {
-            currentSubIndex: -1,
+            currentSubIndex: this.props.defaultIndex,
             currentIndex: 0,
             tags: this.tagsData.length > 0 ? this.tagsData[0].tags : []
         };
@@ -31,7 +33,7 @@ export default class NormalTopMenu extends Component {
     componentWillReceiveProps(nextProps) {
         const {tagsData} = nextProps;
         if (tagsData != this.props.tagsData) {
-            this.setState({currentIndex: 0,tags: tagsData.length > 0 ? tagsData[0].tags : [], currentSubIndex: -1});
+            this.setState({currentIndex: this.props.defaultIndex, tags: tagsData.length > 0 ? tagsData[0].tags : [], currentSubIndex: this.props.defaultIndex});
         }
     }
 
@@ -52,13 +54,18 @@ export default class NormalTopMenu extends Component {
             return;
         if (value.name === "全部") {
             this.props.AllMenuItem(index, value);
+            this.setState({
+                currentIndex: index,
+                tags: value.tags,
+                currentSubIndex:this.props.defaultIndex
+            });
+            return;
         }
-        if (value.tags.length == 0) {
-            this.props.subClickMenuItem(index, value.name);
-        }
+        this.props.ClickMenuItem(index, value);
         this.setState({
             currentIndex: index,
-            tags: value.tags
+            tags: value.tags,
+            currentSubIndex:this.props.defaultIndex
         });
     }
 
@@ -71,10 +78,10 @@ export default class NormalTopMenu extends Component {
         });
     }
 
-    getSubContent(){
-        let content=<div/>;
-        if(this.state.tags.length > 0)
-            content= <div className="sub-sort-cells">
+    getSubContent() {
+        let content = <div/>;
+        if (this.state.tags.length > 0)
+            content = <div className="sub-sort-cells">
                 <p style={{display: "block"}}>
                     <a>具体类型：</a>
                     {this.state.tags.map((value, index) => {

@@ -20,16 +20,20 @@ import config from '../modules/config'
 class Category extends Component {
     constructor(props) {
         super(props);
+        this.startParams = "?start=0&limit=50";
+        this.typeGender = "&gender=male";
+        this.typeBookMajor = "&major=玄幻";
+        this.typeBookMinor = "&minor=";
+        this.typeBookStatus = "&type=hot";
         this.state = {
             title: config.bookListTypes[0].title,
             curIndex: 0,
-            params: "?gender=male&type=hot&major=玄幻&minor=&start=0&limit=50"
         }
     }
 
     componentDidMount() {
         this.props.getCategoryListV2();
-        this.props.getCategoryBooks("?gender=male&type=hot&major=玄幻&minor=&start=0&limit=50");
+        this.getData();
     }
 
     renderStatus(status) {
@@ -43,25 +47,23 @@ class Category extends Component {
     }
 
     getBookListDetail(index) {
-        let params ,returnParams= "";
+        let params, returnParams = "";
         if (index === 0) {
-            returnParams="?gender=male";
+            returnParams = "&gender=male";
             params = "?gender=male&type=hot&major=玄幻&minor=&start=0&limit=50";
         } else if (index === 1) {
-            returnParams= "?gender=female";
+            returnParams = "&gender=female";
             params = "?gender=female&type=hot&major=古代言情&minor=&start=0&limit=50";
         } else if (index === 2) {
-            returnParams= "?gender=press";
+            returnParams = "&gender=press";
             params = "?gender=press&type=&major=传记名著&minor=&start=0&limit=50";
         }
         this.props.getCategoryBooks(params);
-        return returnParams+"&start=0&limit=50";
+        return returnParams;
     }
 
-    getSubClickMenuItem(index, item) {
-        let params = "";
-        //params = this.state.params + "&major="+item;
-        //this.props.getCategoryBooks(params);
+    getData() {
+        this.props.getCategoryBooks(this.startParams + this.typeGender + this.typeBookMajor + this.typeBookMinor + this.typeBookStatus);
     }
 
     render() {
@@ -72,8 +74,8 @@ class Category extends Component {
                 {/*左侧菜单*/}
                 <div className="c-full-sideBar">
                     <NormalLeftMenu clickMenuItem={(index, item) => {
-                        let params = this.getBookListDetail(index);
-                        this.setState({title: item.title, curIndex: index, params: params})
+                        this.typeGender = this.getBookListDetail(index);
+                        this.setState({title: item.title, curIndex: index})
                     }} menuData={config.bookListCategory}/>
                 </div>
                 {/*内容显示区*/}
@@ -81,13 +83,25 @@ class Category extends Component {
                     <div className="title">
                         {this.state.title}
                     </div>
-                    {category.tagsV2.length>0?<NormalTopMenu defaultIndex={-1} title={"作品类型"} tagsData={category.tagsV2[this.state.curIndex]} subClickMenuItem={(index, item) => {
-                        this.getSubClickMenuItem(index, item);
-                    }}/>:<div/>}
-                    {this.state.curIndex===2?null:<NormalTopMenu tagsData={config.subCategory} title={"更多筛选"} subClickMenuItem={(index, item) => {
-                        let params =   this.state.params+"&type="+item.code;
-                        this.props.getCategoryBooks(params);
-                    }}/>}
+                    {category.tagsV2.length > 0 ?
+                        <NormalTopMenu  title={"作品类型"} tagsData={category.tagsV2[this.state.curIndex]}
+                                       ClickMenuItem={(index, item) => {
+                                           this.typeBookMajor = "&major=" + item.name;
+                                           this.typeBookMinor = "&minor=";
+                                           this.getData();
+                                       }} subClickMenuItem={(index, item) => {
+                            if (item === "全部")
+                                this.typeBookMinor = "&minor=";
+                            else {
+                                this.typeBookMinor = "&minor=" + item;
+                            }
+                            this.getData();
+                        }}/> : <div/>}
+                    {this.state.curIndex === 2 ? null :
+                        <NormalTopMenu tagsData={config.subCategory} title={"更多筛选"} ClickMenuItem={(index, item) => {
+                            this.typeBookStatus = "&type=" + item.code;
+                            this.getData();
+                        }}/>}
                     {this.renderStatus(category.booksState)}
                 </div>
             </section>

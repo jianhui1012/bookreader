@@ -58,7 +58,7 @@ class BookListComponent extends Component {
         let params = "";
         if (item === "男性") {
             params = this.state.params + "&gender=male";
-        } else if (index === "女性") {
+        } else if (item === "女性") {
             params = this.state.params + "&gender=female";
         } else {
             params = this.state.params + "&tag=" + item;
@@ -85,6 +85,16 @@ class BookListComponent extends Component {
                     </div>
                     <NormalTopMenu AllMenuItem={(index, item) => {
                         this.getBookListDetail(this.state.curIndex);
+                    }} ClickMenuItem={(index, item) => {
+                        let params = "", tag = item.tags[0];
+                        if (tag === "男性") {
+                            params = this.state.params + "&gender=male";
+                        } else if (tag === "女性") {
+                            params = this.state.params + "&gender=female";
+                        } else {
+                            params = this.state.params + "&tag=" + tag;
+                        }
+                        this.props.getDiscoverBookListDetail(params);
                     }} tagsData={this.props.booklist.tags} subClickMenuItem={(index, item) => {
                         this.getSubClickMenuItem(index, item);
                     }}/>

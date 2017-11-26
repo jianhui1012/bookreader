@@ -47,15 +47,21 @@ export let discoverCategoryListV2 = () => {
 let getCategoryListV2Success = (data) => {
     let tagV2 = [], males = [], females = [], presss = [];
     data.male.forEach((item, index) => {
-        let itemV2 = {};
+        let itemV2 = {},newTags=item.mins;
         itemV2.name = item.major;
-        itemV2.tags = item.mins;
+        if (newTags.length > 0) {
+            newTags.unshift("全部");
+        }
+        itemV2.tags = newTags;
         males.push(itemV2);
     });
     data.female.forEach((item, index) => {
-        let itemV2 = {};
+        let itemV2 = {},newTags=item.mins;
         itemV2.name = item.major;
-        itemV2.tags = item.mins;
+        if (newTags.length > 0) {
+            newTags.unshift("全部");
+        }
+        itemV2.tags = newTags;
         females.push(itemV2);
     });
     data.press.forEach((item, index) => {
