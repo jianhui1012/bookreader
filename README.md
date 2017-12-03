@@ -42,7 +42,7 @@ npm run dev
 
 # API接口文档
 
-## [接口文档地址](https://github.com/jianhui1012/blogHexo/blob/master/source/_posts/%E9%98%85%E5%9B%BEAPI.md)
+## [wiki接口文档地址](https://github.com/jianhui1012/bookreader/wiki/API-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3)
 
 
 ## 部分截图

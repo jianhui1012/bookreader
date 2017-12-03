@@ -20,9 +20,13 @@ import config from '../modules/config'
 class Category extends Component {
     constructor(props) {
         super(props);
+
+        let {gender, major, index} = this.props.location.query;
+        this.typeGender = gender ? "&gender=" + gender : "&gender=male";
+        this.typeBookMajor = major ? "&major=" + major : "&major=玄幻";
+        this.defaultIndex = index ? index : 0;
+        //console.log(this.defaultIndex);
         this.startParams = "?start=0&limit=50";
-        this.typeGender = "&gender=male";
-        this.typeBookMajor = "&major=玄幻";
         this.typeBookMinor = "&minor=";
         this.typeBookStatus = "&type=hot";
         this.state = {
@@ -84,7 +88,8 @@ class Category extends Component {
                         {this.state.title}
                     </div>
                     {category.tagsV2.length > 0 ?
-                        <NormalTopMenu  title={"作品类型"} tagsData={category.tagsV2[this.state.curIndex]}
+                        <NormalTopMenu defaultIndex={this.defaultIndex} title={"作品类型"}
+                                       tagsData={category.tagsV2[this.state.curIndex]}
                                        ClickMenuItem={(index, item) => {
                                            this.typeBookMajor = "&major=" + item.name;
                                            this.typeBookMinor = "&minor=";

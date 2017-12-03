@@ -9,7 +9,7 @@ import {discoverCategoryList} from "../actions/categoryAction";
 import {discoverSingleMenuList} from "../actions/selectionAction";
 import {rankingList} from "../actions/rankingAction";
 import {getSpread} from "../actions/homeAction";
-import {Carousel} from "antd";
+import {Carousel, BackTop} from "antd";
 import "./common/style/home.scss";
 
 
@@ -24,6 +24,22 @@ function CategoryList(props) {
         <div className="category-list">
             {categoryList.map((value, index) => {
                 return <a key={index} onClick={() => {
+                    if (title === "男生") {
+                        browserHistory.push({
+                            pathname: '/category',
+                            query: {gender: "male",major:value.name,index:index},
+                        });
+                    } else if (title === "女生") {
+                        browserHistory.push({
+                            pathname: '/category',
+                            query: {gender: "female",major:value.name,index:index},
+                        });
+                    } else if (title === "出版") {
+                        browserHistory.push({
+                            pathname: '/category',
+                            query: {gender: "press",major:value.name,index:index},
+                        });
+                    }
                 }}>
                     <p className="name">{value.name}</p>
                     <p className="bookCount">{value.bookCount}</p>
@@ -102,7 +118,7 @@ function RecommandList(props) {
         <div className="books-list">
             {recommandList.map((value, index) => {
                 let book = value.book;
-                return <a key={index} className="book" onClick={()=>{
+                return <a key={index} className="book" onClick={() => {
                     browserHistory.push({
                         pathname: '/book',
                         query: {bookId: book._id},
@@ -112,7 +128,7 @@ function RecommandList(props) {
                     <div className="right">
                         <h4 className="name">
                             <span>{book.title}</span>
-                            <span className="tag-serial">{book.isSerial?"连载":"完结"}</span>
+                            <span className="tag-serial">{book.isSerial ? "连载" : "完结"}</span>
                         </h4>
                         <p className="desc">{book.shortIntro}</p>
                         <p className="popularity">
@@ -150,6 +166,7 @@ class Home extends Component {
         const {home} = this.props;
         //console.log(home);
         return <div className="page-home">
+            <BackTop />
             <section className="container content">
                 <div className="content-left">
                     <div className="category">
@@ -160,7 +177,7 @@ class Home extends Component {
                     <RankList title="排行榜" rankList={home.chartsDetailBooks}/>
                 </div>
                 <div className="content-right">
-                    <div className="banner" style={{marginBottom:35}}>
+                    <div className="banner" style={{marginBottom: 35}}>
                         {home.spreadData.length > 0 ?
                             <Carousel accessibility arrows centerMode autoplay>
                                 {home.spreadData.map((value, index) => {
@@ -173,30 +190,34 @@ class Home extends Component {
                                 })}
                             </Carousel> : null}
                     </div>
-                    {home.nodes.length===0?null:<RecommandList title={home.nodes[0].title} recommandList={home.nodes[0].books}/>}
-                    {home.nodes.length===0?null:<RecommandList title={home.nodes[1].title} recommandList={home.nodes[1].books}/>}
-                    {home.nodes.length===0?null:<RecommandList title={home.nodes[2].title} recommandList={home.nodes[2].books}/>}
-                    {home.nodes.length===0?null:<RecommandList title={home.nodes[3].title} recommandList={home.nodes[3].books}/>}
+                    {home.nodes.length === 0 ? null :
+                        <RecommandList title={home.nodes[0].title} recommandList={home.nodes[0].books}/>}
+                    {home.nodes.length === 0 ? null :
+                        <RecommandList title={home.nodes[1].title} recommandList={home.nodes[1].books}/>}
+                    {home.nodes.length === 0 ? null :
+                        <RecommandList title={home.nodes[2].title} recommandList={home.nodes[2].books}/>}
+                    {home.nodes.length === 0 ? null :
+                        <RecommandList title={home.nodes[3].title} recommandList={home.nodes[3].books}/>}
                 </div>
             </section>
             <section className="container">
                 <div className="hot-items">
-                    {home.spreadData.length > 0 ?home.spreadData.map((value,index)=>{
-                        let hotItemClass="hot-item hot-item-first";
-                        if(index===1){
-                            hotItemClass="hot-item";
-                        }else  if(index===2){
-                            hotItemClass="hot-item hot-item-last";
+                    {home.spreadData.length > 0 ? home.spreadData.map((value, index) => {
+                        let hotItemClass = "hot-item hot-item-first";
+                        if (index === 1) {
+                            hotItemClass = "hot-item";
+                        } else if (index === 2) {
+                            hotItemClass = "hot-item hot-item-last";
                         }
-                        return    <a key={index}  onClick={()=>{
+                        return <a key={index} onClick={() => {
                             browserHistory.push({
                                 pathname: '/book',
                                 query: {bookId: value.link},
                             });
-                        }}  className={hotItemClass}>
-                            <img src={value.img} />
+                        }} className={hotItemClass}>
+                            <img src={value.img}/>
                         </a>;
-                        }):null}
+                    }) : null}
                 </div>
             </section>
             <section className="container"/>

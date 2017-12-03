@@ -1,27 +1,85 @@
-.friend-link {
-  width: 100%;
-  color: #999;
-  font-size: 14px;
+.c-full-footer {
+  clear: both;
+  padding: 12px 0 20px;
 
-  a {
-    background: #fff;
-    width: 140px;
-    max-width: 140px;
-    height: 48px;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 10px;
-    border: 1px solid #ddd;
-    padding: 5px;
+  .container {
+    position: relative;
+    .friend-link {
+      width: 100%;
+      color: #999;
+      font-size: 14px;
 
-    img {
-      max-width: 100%;
-      border: 0 none;
+      a {
+        background: #fff;
+        width: 140px;
+        max-width: 140px;
+        height: 48px;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 10px;
+        border: 1px solid #ddd;
+        padding: 5px;
+
+        img {
+          max-width: 100%;
+          border: 0 none;
+        }
+
+      }
     }
 
-  }
+    .foot {
+      margin-top: 10px;
 
+    }
+
+    .footer-left {
+      float: left;
+      height: 100%;
+      color: #999;
+      font-size: 14px;
+      .info {
+        height: 50%;
+        line-height: 50px;
+        a {
+          color: #999;
+        }
+        span {
+          margin: 0 5px;
+        }
+      }
+      .copyRight {
+        height: 50%;
+        line-height: 25px;
+        color: #613f23;
+      }
+    }
+
+    .footer-right {
+      float: right;
+      margin-top: 25px;
+      .public {
+        float: left;
+        margin-top: 6px;
+      }
+      .verticaleLine {
+        float: left;
+        width: 1px;
+        height: 50px;
+        margin: 0 15px;
+        border-right: 1px solid #999;
+      }
+
+    .text {
+        float: left;
+        line-height: 25px;
+        color: #999;
+      }
+    }
+  }
 }
+
+
 
 
 

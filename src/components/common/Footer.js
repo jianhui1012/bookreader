@@ -22,11 +22,24 @@ const Footer = () => (
         <div className="container">
             <div className="friend-link">
                 <span>友情链接:</span>
-                {shipReleteURL.map((value, index) => {
-                    return <a key={index} href={value.url} target="_blank" rel="nofollow" title={value.title}>
-                        <img src={value.icon} alt={value.title}/></a>;
-                })}         
+                <a href="http://www.hanwujinian.com" target="_blank" rel="nofollow" title="寒武纪年原创网"><img
+                    src="http://www.zhuishushenqi.com/images/friend/hwjn.png" alt="寒武纪年原创网"/></a>
+                <a href="http://lwcs.0708.com/t2/176/3668.html" target="_blank" rel="nofollow" title="北京掌趣科技股份有限公司"><img
+                    src="http://www.zhuishushenqi.com/images/friend/zq.png" alt="北京掌趣科技股份有限公司"/></a>
+                <a href="http://www.2cloo.com" target="_blank" rel="nofollow" title="二层楼书院"><img
+                    src="http://www.zhuishushenqi.com/images/friend/ecl.jpg" alt="二层楼书院"/></a>
+                <a href="http://www.anyew.cn" target="_blank" rel="nofollow" title="暗夜文学"><img
+                    src="http://www.zhuishushenqi.com/images/friend/ay.jpg" alt="暗夜文学"/></a>
+                <a href="http://www.yidianling.com" target="_blank" rel="nofollow" title="壹点灵"><img
+                    src="http://www.zhuishushenqi.com/images/friend/yidianling.png" alt="壹点灵"/></a>
             </div>
+            {/*<div className="friend-link">*/}
+            {/*<span>友情链接:</span>*/}
+            {/*{shipReleteURL.map((value, index) => {*/}
+            {/*return <a key={index} href={value.url} target="_blank" rel="nofollow" title={value.title}>*/}
+            {/*<img src={value.icon} alt={value.title}/></a>;*/}
+            {/*})}         */}
+            {/*</div>*/}
             <div className="foot clearfix">
                 <div className="footer-left">
                     <div className="info">
@@ -39,49 +52,13 @@ const Footer = () => (
                         <a href="/about?type=joinUs">加入我们</a>
                     </div>
                     <div className="copyRight">
-                        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011202006103">
-                            {/*<img src="/images/icon/recordIcon.png" style="float:left;"/>*/}
-                                <p>
-                                    {"沪公网安备 31011202006103号"}
-                                </p>
+                        <a target="_blank">
+                            <p>
+                                {"沪公网安备 31011202006103号"}
+                            </p>
                         </a>
                     </div>
                 </div>
-                <div className="footer-right">
-                    <div className="public">
-                        <div className="weibo">
-                            <div id="footer-weibo" className="icon icon-weibo"></div>
-                            <div className="qr-code weibo-code">
-                                <div className="arrow-bottom"></div>
-                                <div className="block">
-                                    <div className="sub-block">
-                                        {/*<img src="/images/qrcode/weibo.png" alt="追书神器微博"/>*/}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="weixin">
-                            <div className="icon icon-weixin"></div>
-                            <div className="qr-code weixin-code">
-                                <div className="arrow-bottom"></div>
-                                <div className="block">
-                                    <div className="sub-block">
-                                        {/*<img src="/images/qrcode/fuwuhao.png" alt="追书神器服务号"/>*/}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="verticaleLine"></div>
-                    <div className="text">
-                        <p>关注追书微信公众号，可以</p>
-                        <p>随时和我们反馈交流哦</p>
-                    </div>
-                </div>
-            </div>
-            <div  className="top0">
-                <span className="arrow-top"/>
-                <p>顶部</p>
             </div>
         </div>
     </footer>

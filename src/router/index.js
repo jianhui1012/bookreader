@@ -61,6 +61,18 @@ const search = (location, cb) => {
     }, 'search')
 };
 
+const about = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/aboutPage').default)
+    }, 'about')
+};
+
+const download = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../components/downloadPage').default)
+    }, 'download')
+};
+
 
 const RouteConfig = (
     <Router history={browserHistory}>
@@ -75,6 +87,8 @@ const RouteConfig = (
             <Route path="/book" getComponent={book}/>
             <Route path="/search" getComponent={search}/>
             <Route path="/booklistDetail" getComponent={booklistDetail}/>
+            <Route path="/about" getComponent={about}/>
+            <Route path="/download" getComponent={download}/>
         </Route>
     </Router>
 );
