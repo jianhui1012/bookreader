@@ -149,7 +149,11 @@ class Read extends Component {
             <Modal
                 title="章节目录"
                 footer={null}
-                closable={false}
+                onClose={() => {
+                    this.setState({
+                        visible: false,
+                    });
+                }}
                 bodyStyle={{maxHeight: 350, overflow: 'auto'}}
                 visible={this.state.visible}>
                 {read.bookChapterList.length > 0 ? read.bookChapterList.map((value, index) => {
