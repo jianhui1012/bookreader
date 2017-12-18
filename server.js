@@ -19,7 +19,7 @@ const proxy = [{
 }];
 const server = new WebpackDevServer(webpack(config), {
 	publicPath: config.output.publicPath,
-	progress: true,
+	//progress: true,//显示打包的进度,webpack2中没有该配置项
 	stats: {
 		colors: true,
 	},

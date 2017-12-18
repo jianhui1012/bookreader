@@ -21,28 +21,23 @@ module.exports = {
         chunkFilename: '[name].[chunkhash:5].min.js',
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             exclude: /^node_modules$/,
-            loader: 'babel',
+            loader: 'babel-loader',
             include: [APP_PATH]
         }, {
             test: /\.css$/,
             exclude: /^node_modules$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer']),
+            loader:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader']}),
             include: [APP_PATH]
         }, {
             test: /\.less$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'less']),
+            loader:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader','less-loader']}),
         }, {
             test: /\.scss$/,
             exclude: /^node_modules$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'sass']),
-            include: [APP_PATH]
-        }, {
-            test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
-            exclude: /^node_modules$/,
-            loader: 'file-loader?name=[name].[ext]',
+            loader:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader','sass-loader']}),
             include: [APP_PATH]
         }, {
             test: /\.(png|jpg)$/,
@@ -53,7 +48,7 @@ module.exports = {
         }, {
             test: /\.jsx$/,
             exclude: /^node_modules$/,
-            loaders: ['jsx', 'babel'],
+            use: ['jsx-loader', 'babel-loader'],
             include: [APP_PATH]
         }]
     },
@@ -71,6 +66,6 @@ module.exports = {
         new ExtractTextPlugin('[name].css')
     ],
     resolve: {
-        extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
+        extensions: ['.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
     }
 };
