@@ -24,25 +24,25 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             exclude: /^node_modules$/,
-            loader: 'babel-loader',
+            use: 'babel-loader',
             include: [APP_PATH]
         }, {
             test: /\.css$/,
             exclude: /^node_modules$/,
-            loader:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader']}),
+            use:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader']}),
             include: [APP_PATH]
         }, {
             test: /\.less$/,
-            loader:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader','less-loader']}),
+            use:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader','less-loader']}),
         }, {
             test: /\.scss$/,
             exclude: /^node_modules$/,
-            loader:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader','sass-loader']}),
+            use:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader','sass-loader']}),
             include: [APP_PATH]
         }, {
             test: /\.(png|jpg)$/,
             exclude: /^node_modules$/,
-            loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
+            use: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
             //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
             include: [APP_PATH]
         }, {

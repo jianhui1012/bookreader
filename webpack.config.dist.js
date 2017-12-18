@@ -31,36 +31,34 @@ module.exports = {
         chunkFilename: '[name].[chunkhash:5].min.js',
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             exclude: /^node_modules$/,
-            loader: 'babel',
+            use: 'babel-loader',
             include: [APP_PATH]
         }, {
             test: /\.css$/,
-            //exclude: /^node_modules$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer'])
+            exclude: /^node_modules$/,
+            use:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader']}),
+            include: [APP_PATH]
         }, {
             test: /\.less$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'less']),
+            use:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader','less-loader']}),
         }, {
             test: /\.scss$/,
             exclude: /^node_modules$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'sass']),
+            use:ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','autoprefixer-loader','sass-loader']}),
             include: [APP_PATH]
         }, {
-            test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
-            //exclude: /^node_modules$/,
-            loader: 'file-loader?name=[name].[ext]'
-        }, {
-            test: /\.(png|jpg|gif)$/,
-            //exclude: /^node_modules$/,
-            loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
-            //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图
+            test: /\.(png|jpg)$/,
+            exclude: /^node_modules$/,
+            use: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
+            //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
+            include: [APP_PATH]
         }, {
             test: /\.jsx$/,
             exclude: /^node_modules$/,
-            loaders: ['jsx', 'babel'],
+            use: ['jsx-loader', 'babel-loader'],
             include: [APP_PATH]
         }]
     },
@@ -78,9 +76,8 @@ module.exports = {
         }),
         new ExtractTextPlugin('[name].css'),
         //提取出来的样式和common.js会自动添加进发布模式的html文件中，原来的html没有
-        new webpack.optimize.CommonsChunkPlugin("common", "common.bundle.js"),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({name:"common", filename:"common.bundle.js"}),
+        // new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             output: {
                 comments: false, // remove all comments
@@ -89,10 +86,10 @@ module.exports = {
                 warnings: false
             }
         })
-        
+
     ],
     resolve: {
-        extensions: ['', '.web.js', '.js', '.jsx', '.less', '.scss', '.css' , '.json'] ,//后缀名自动补全
-        modulesDirectories: ['node_modules', path.join(__dirname, 'node_modules')]
+        extensions: ['.web.js', '.js', '.jsx', '.less', '.scss', '.css' , '.json'] ,//后缀名自动补全
+        modules: ['node_modules', path.join(__dirname, 'node_modules')]
     }
 };
